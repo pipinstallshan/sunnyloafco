@@ -6,6 +6,11 @@
     assign image = settings.logo_inverse
   endif
 
+  assign fallback_logo_asset = 'lockup-horizontal.png'
+  if section_settings.inverse
+    assign fallback_logo_asset = 'lockup-stacked-tagline-on-charcoal.png'
+  endif
+
   if section_settings.background_color != blank
     render 'contrast-override', background_color: section_settings.background_color, section_id: section.id
   endif
@@ -24,6 +29,16 @@
         alt: shop.name,
         sizes: '(min-width: 750px) calc(var(--logo-width)), 100vw'
     -}}
+  {% endcapture %}
+{%- else -%}
+  {% capture logo_image %}
+    <img
+      class="logo-section__image"
+      src="{{ fallback_logo_asset | asset_url }}"
+      alt="{{ shop.name | escape }}"
+      height="{{ section_settings.pixel_height }}"
+      loading="lazy"
+    >
   {% endcapture %}
 {%- endif -%}
 
@@ -46,8 +61,8 @@
         {% if image %}
           --logo-width: {{ image.width | times: 1.00 | divided_by: image.height | times: section_settings.pixel_height }}px;
         {% else %}
-          --logo-width: {{ shop.name.size | times: 0.65 }}em;
           --logo-height: {{ section_settings.pixel_height }}px;
+          --logo-width: 100%;
         {% endif %}
       {% endif %}
 
@@ -58,9 +73,9 @@
         {% else %}
           {% if image %}
             --logo-width-mobile: {{ image.width | times: 1.00 | divided_by: image.height | times: section_settings.pixel_height_mobile }}px;
-            {% else %}
-              --logo-width-mobile: {{ shop.name.size | times: 0.65 }}em;
-              --logo-height-mobile: {{ section_settings.pixel_height_mobile }}px;
+          {% else %}
+            --logo-height-mobile: {{ section_settings.pixel_height_mobile }}px;
+            --logo-width-mobile: 100%;
           {% endif %}
         {% endif %}
       {% endif %}
@@ -68,13 +83,9 @@
     "
     {{ section.shopify_attributes }}
   >
-    {% if logo_image %}
-      <div class="logo-section__image-wrapper">
-        {{ logo_image }}
-      </div>
-    {% else %}
-      {% render 'jumbo-text', text: shop.name, block_settings: section.settings %}
-    {% endif %}
+    <div class="logo-section__image-wrapper">
+      {{ logo_image }}
+    </div>
   </div>
 </div>
 

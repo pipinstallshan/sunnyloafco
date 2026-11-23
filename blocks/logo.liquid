@@ -5,6 +5,11 @@
   if block_settings.inverse and settings.logo_inverse
     assign image = settings.logo_inverse
   endif
+
+  assign fallback_logo_asset = 'lockup-horizontal.png'
+  if block_settings.inverse
+    assign fallback_logo_asset = 'lockup-stacked-tagline-on-charcoal.png'
+  endif
 %}
 
 {%- if image -%}
@@ -21,6 +26,16 @@
         sizes: '(min-width: 750px) calc(var(--logo-width)), 100vw'
     -}}
   {% endcapture %}
+{%- else -%}
+  {% capture logo_image %}
+    <img
+      class="logo-block__image"
+      src="{{ fallback_logo_asset | asset_url }}"
+      alt="{{ shop.name | escape }}"
+      height="{{ block_settings.pixel_height }}"
+      loading="lazy"
+    >
+  {% endcapture %}
 {%- endif -%}
 
 <div
@@ -35,8 +50,8 @@
       {% if image %}
         --logo-width: {{ image.width | times: 1.00 | divided_by: image.height | times: block_settings.pixel_height }}px;
       {% else %}
-        --logo-width: {{ shop.name.size | times: 0.65 }}em;
         --logo-height: {{ block_settings.pixel_height }}px;
+        --logo-width: 100%;
       {% endif %}
     {% endif %}
 
@@ -47,9 +62,9 @@
       {% else %}
         {% if image %}
           --logo-width-mobile: {{ image.width | times: 1.00 | divided_by: image.height | times: block_settings.pixel_height_mobile }}px;
-          {% else %}
-            --logo-width-mobile: {{ shop.name.size | times: 0.65 }}em;
-            --logo-height-mobile: {{ block_settings.pixel_height_mobile }}px;
+        {% else %}
+          --logo-height-mobile: {{ block_settings.pixel_height_mobile }}px;
+          --logo-width-mobile: 100%;
         {% endif %}
       {% endif %}
     {% endif %}
@@ -57,13 +72,9 @@
   "
   {{ block.shopify_attributes }}
 >
-  {% if logo_image %}
-    <div class="logo-block__image-wrapper">
-      {{ logo_image }}
-    </div>
-  {% else %}
-    {% render 'jumbo-text', text: shop.name %}
-  {% endif %}
+  <div class="logo-block__image-wrapper">
+    {{ logo_image }}
+  </div>
 </div>
 
 {% stylesheet %}
