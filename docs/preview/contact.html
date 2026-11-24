@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Contact preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/sunnyloaf.css">
+<style>
+ :root{--font-heading--family:'Fraunces',serif;--font-body--family:'Figtree',sans-serif;--font-subheading--family:'Figtree',sans-serif;--page-width:1280px;--page-margin:20px}
+ *{box-sizing:border-box}body{margin:0;background:var(--sl-milk);color:var(--sl-charcoal);font-family:var(--font-body--family)}
+ h1,h2,h3{font-family:var(--font-heading--family);font-weight:600}
+ .button{display:inline-flex;align-items:center;justify-content:center;background:var(--sl-crust);color:var(--sl-milk);border-radius:12px;font-weight:600;text-decoration:none;padding:0 28px;min-height:50px;border:none;font-family:var(--font-body--family);cursor:pointer;font-size:1rem}
+ .demo-label{max-width:1280px;margin:28px auto 0;padding:0 20px;font:600 0.8rem/1 'Figtree';letter-spacing:.08em;text-transform:uppercase;color:var(--sl-crust)}
+ .bento-demo{max-width:1280px;margin:12px auto 0;padding:0 20px;display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+ .bento-card{position:relative;height:200px;border-radius:22px;overflow:hidden;background:linear-gradient(135deg,#7a4314,#b9803a)}
+ .bento-card::after{content:'';position:absolute;inset:0;background:linear-gradient(0deg,rgba(42,35,28,.62),transparent 58%)}
+ .sl-bento__label{position:absolute;inset:auto 0 0 0;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:22px;z-index:2}
+ .sl-bento__title{margin:0;color:#fffbf3;font-size:1.6rem}
+ .sl-bento__count{display:block;margin-top:4px;font-size:.875rem;color:#fffbf3;opacity:.9}
+</style></head>
+<body class="sl-warm-shadows">
+
+<p class="demo-label">Arrow fix — both now centered (left = default, right = hover)</p>
+<div class="bento-demo">
+  <div class="bento-card">
+    <div class="sl-bento__label">
+      <span><h3 class="sl-bento__title">Cat trees</h3><span class="sl-bento__count">12 products</span></span>
+      <span class="sl-bento__arrow"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+    </div>
+  </div>
+  <div class="bento-card">
+    <div class="sl-bento__label">
+      <span><h3 class="sl-bento__title">Window perches</h3><span class="sl-bento__count">8 products</span></span>
+      <span class="sl-bento__arrow" style="background:var(--sl-butter)"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span>
+    </div>
+  </div>
+</div>
+
+<div class="sl-contact sl-section sl-scheme--light" style="--sl-pad-top:56px;--sl-pad-bottom:84px">
+  <div class="sl-container">
+    <div class="sl-section-head sl-section-head--center">
+      <p class="sl-eyebrow">We're here to help</p>
+      <h1 class="sl-heading sl-contact__heading">Get in touch</h1>
+      <p class="sl-subheading">Questions about your order, a product, or your cat's new favorite sunny spot? Send us a note and a real human will get back to you.</p>
+    </div>
+    <div class="sl-contact__grid">
+      <aside class="sl-contact__aside">
+        <a class="sl-contact__method sl-card sl-card--shadow" href="#">
+          <span class="sl-contact__method-icon"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5 12 12.5l8.5-6"/></svg></span></span>
+          <span class="sl-contact__method-body"><span class="sl-contact__method-label">Email us</span><span class="sl-contact__method-value">hello@sunnyloafco.com</span></span>
+        </a>
+        <div class="sl-contact__method sl-card sl-card--shadow">
+          <span class="sl-contact__method-icon"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 5.5h16v11H8l-4 3.2z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-width="2" stroke-linecap="round"/></svg></span></span>
+          <span class="sl-contact__method-body"><span class="sl-contact__method-label">Fast, friendly replies</span><span class="sl-contact__method-value">We reply within 1 business day, Mon–Fri.</span></span>
+        </div>
+        <div class="sl-contact__method sl-card sl-card--shadow">
+          <span class="sl-contact__method-icon"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4.5 9.5 3.2 4.8c-.1-.5.4-.9.9-.6L8 6.3M19.5 9.5l1.3-4.7c.1-.5-.4-.9-.9-.6L16 6.3"/><path d="M4.5 10.5c0-2.2 3.4-4 7.5-4s7.5 1.8 7.5 4v2.8c0 3.5-3.4 5.9-7.5 5.9s-7.5-2.4-7.5-5.9z"/><path d="M9.3 12.2h.01M14.7 12.2h.01" stroke-width="2"/><path d="M12 14.2c-.7.8-1.8.8-2.5 0M12 14.2c.7.8 1.8.8 2.5 0"/></svg></span></span>
+          <span class="sl-contact__method-body"><span class="sl-contact__method-label">Say hi on social</span>
+            <span class="sl-contact__social">
+              <a href="#" aria-label="Instagram"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/><circle cx="12" cy="12" r="4"/><circle cx="16.6" cy="7.4" r="1.1" fill="currentColor" stroke="none"/></svg></span></a>
+              <a href="#" aria-label="Facebook"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7h2.4l.4-2.9h-2.8V9.3c0-.84.26-1.4 1.46-1.4H16.5V5.3c-.27-.04-1.2-.12-2.27-.12-2.25 0-3.79 1.37-3.79 3.9v2.02H8v2.9h2.44V21z"/></svg></span></a>
+            </span>
+          </span>
+        </div>
+        <p class="sl-contact__note">Prefer email? Reach us any time at hello@sunnyloafco.com — we read every message.</p>
+      </aside>
+
+      <div class="sl-contact__form-wrap sl-card sl-card--shadow">
+        <div class="sl-contact__fields">
+          <div class="sl-field sl-field--half"><label>Name</label><input class="sl-input" type="text" value="Jordan"></div>
+          <div class="sl-field sl-field--half"><label>Email</label><input class="sl-input" type="email" value="jordan@example.com"></div>
+          <div class="sl-field sl-field--half"><label>Order number (optional)</label><input class="sl-input" type="text" placeholder="#1024"></div>
+          <div class="sl-field sl-field--full"><label>How can we help?</label><textarea class="sl-input sl-textarea" rows="6">My cat has claimed the window perch. Do you ship to Hawaii?</textarea></div>
+        </div>
+        <button class="button sl-contact__submit">Send message</button>
+        <p class="sl-contact__privacy">We'll only use your details to reply. No spam, ever.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</body></html>
