@@ -1,30 +1,36 @@
 {%- doc -%}
   Star-rating slot, intended directly under the product title.
   Shows a review-app badge target (Judge.me compatible) once an app is installed.
-  Can also show a manual rating from the product's "reviews" metafields as a fallback.
+  Can also show a manual rating from the product's "reviews" metafields as a fallback,
+  rendered as crisp SVG stars with partial fill.
 {%- enddoc -%}
 {%- liquid
   assign bs = block.settings
   assign p = closest.product
   assign rating = p.metafields.reviews.rating.value
   assign rating_count = p.metafields.reviews.rating_count.value
+  assign rating_value = rating.rating | default: rating
 -%}
+{%- capture star_svg -%}<svg class="sl-stars__star" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.98 6.09 20.34l1.13-6.57L2.45 9.12l6.6-.96z"/></svg>{%- endcapture -%}
 <div class="sl-rating-slot spacing-style" style="{% render 'spacing-style', settings: bs %}" {{ block.shopify_attributes }}>
   {%- comment -%} Review-app badge target. Judge.me and most review apps populate this. {%- endcomment -%}
   <div class="jdgm-widget jdgm-preview-badge" data-id="{{ p.id }}"></div>
 
-  {%- if bs.show_manual_fallback and rating != blank -%}
-    {%- assign rounded = rating.rating | default: rating | round -%}
-    <span class="sl-rating-slot__stars" aria-hidden="true">
-      {%- for i in (1..5) -%}{% if i <= rounded %}&#9733;{% else %}&#9734;{% endif %}{%- endfor -%}
+  {%- if bs.show_manual_fallback and rating_value != blank -%}
+    {%- assign pct = rating_value | times: 20.0 -%}
+    <span class="sl-stars" style="--sl-rating: {{ pct }}%" role="img" aria-label="Rated {{ rating_value }} out of 5">
+      <span class="sl-stars__track" aria-hidden="true">{{ star_svg }}{{ star_svg }}{{ star_svg }}{{ star_svg }}{{ star_svg }}</span>
+      <span class="sl-stars__fill" aria-hidden="true">{{ star_svg }}{{ star_svg }}{{ star_svg }}{{ star_svg }}{{ star_svg }}</span>
     </span>
-    <span>
-      {{ rating.rating | default: rating }}
-      {%- if rating_count != blank %} ({{ rating_count }}){% endif -%}
+    <span class="sl-rating-slot__meta">
+      <strong>{{ rating_value }}</strong>
+      {%- if rating_count != blank %} <span>({{ rating_count }} review{% if rating_count != 1 %}s{% endif %})</span>{% endif -%}
     </span>
   {%- elsif request.design_mode -%}
-    <span class="sl-rating-slot__stars" aria-hidden="true">&#9734;&#9734;&#9734;&#9734;&#9734;</span>
-    <span style="opacity:.7">Review badge appears here once a review app (e.g. Judge.me) is installed.</span>
+    <span class="sl-stars sl-stars--empty" style="--sl-rating: 0%" aria-hidden="true">
+      <span class="sl-stars__track">{{ star_svg }}{{ star_svg }}{{ star_svg }}{{ star_svg }}{{ star_svg }}</span>
+    </span>
+    <span class="sl-rating-slot__meta" style="opacity:.7">Review badge appears here once a review app (e.g. Judge.me) is installed.</span>
   {%- endif -%}
 </div>
 

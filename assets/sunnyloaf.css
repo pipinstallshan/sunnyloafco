@@ -1208,14 +1208,57 @@
 .sl-rating-slot {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 9px;
   min-height: 20px;
   font-size: 0.875rem;
 }
 
-.sl-rating-slot__stars {
-  color: var(--sl-crust);
-  letter-spacing: 1px;
+.sl-stars {
+  position: relative;
+  display: inline-flex;
+  width: max-content;
+  line-height: 0;
+}
+
+.sl-stars__track,
+.sl-stars__fill {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.sl-stars__track {
+  color: rgb(var(--sl-crust-rgb) / 0.22);
+}
+
+.sl-stars__fill {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: var(--sl-rating, 0%);
+  overflow: hidden;
+  color: var(--sl-butter);
+}
+
+.sl-stars__star {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+
+.sl-scheme--dark .sl-stars__track {
+  color: rgb(var(--sl-milk-rgb) / 0.26);
+}
+
+.sl-rating-slot__meta {
+  color: inherit;
+}
+
+.sl-rating-slot__meta strong {
+  font-weight: 600;
+}
+
+.sl-rating-slot__meta span {
+  opacity: 0.68;
 }
 
 /* ---------- Product gallery: one image per swipe ---------- */
@@ -1551,6 +1594,29 @@ media-gallery slideshow-slide,
 }
 
 /* ---------- Contact page ---------- */
+.sl-contact {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.sl-contact__glow {
+  position: absolute;
+  top: -160px;
+  inset-inline-end: -120px;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgb(var(--sl-butter-rgb) / 0.42), rgb(var(--sl-butter-rgb) / 0) 68%);
+  filter: blur(26px);
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sl-scheme--dark .sl-contact__glow {
+  background: radial-gradient(circle, rgb(var(--sl-butter-rgb) / 0.26), rgb(var(--sl-butter-rgb) / 0) 68%);
+}
+
 .sl-contact__heading {
   font-size: clamp(2rem, 1.5rem + 2.2vw, 3.25rem);
   line-height: 1.05;
@@ -1567,6 +1633,11 @@ media-gallery slideshow-slide,
   .sl-contact__grid {
     grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
     gap: clamp(20px, 2.5vw, 40px);
+  }
+
+  .sl-contact__aside {
+    position: sticky;
+    top: 24px;
   }
 }
 
