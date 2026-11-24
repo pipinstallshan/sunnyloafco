@@ -7,8 +7,10 @@
   endif
 
   assign fallback_logo_asset = 'lockup-horizontal.png'
+  assign fallback_logo_ratio = 4.879
   if section_settings.inverse
     assign fallback_logo_asset = 'lockup-stacked-tagline-on-charcoal.png'
+    assign fallback_logo_ratio = 1.242
   endif
 
   if section_settings.background_color != blank
@@ -36,6 +38,7 @@
       class="logo-section__image"
       src="{{ fallback_logo_asset | asset_url }}"
       alt="{{ shop.name | escape }}"
+      width="{{ section_settings.pixel_height | times: fallback_logo_ratio | round }}"
       height="{{ section_settings.pixel_height }}"
       loading="lazy"
     >
