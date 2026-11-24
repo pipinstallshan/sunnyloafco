@@ -1,0 +1,87 @@
+{%- doc -%}
+  Sunny Loaf inline icons. Cat-themed, never bread.
+
+  @param {string} name - sun, cat, window, paw, shipping, returns, secure, support, star, instagram, facebook, arrow, email, search
+  @param {string} [class] - extra classes on the wrapper span
+{%- enddoc -%}
+{%- liquid
+  assign cls = class | default: ''
+-%}
+<span class="sl-icon {{ cls }}" aria-hidden="true">
+  {%- case name -%}
+    {%- when 'sun' -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/>
+        <path d="M12 2.4v2.4M12 19.2v2.4M4.3 4.3l1.7 1.7M18 18l1.7 1.7M2.4 12h2.4M19.2 12h2.4M4.3 19.7l1.7-1.7M18 6l1.7-1.7"/>
+      </svg>
+    {%- when 'cat' -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4.5 9.5 3.2 4.8c-.1-.5.4-.9.9-.6L8 6.3M19.5 9.5l1.3-4.7c.1-.5-.4-.9-.9-.6L16 6.3"/>
+        <path d="M4.5 10.5c0-2.2 3.4-4 7.5-4s7.5 1.8 7.5 4v2.8c0 3.5-3.4 5.9-7.5 5.9s-7.5-2.4-7.5-5.9z"/>
+        <path d="M9.3 12.2h.01M14.7 12.2h.01" stroke-width="2"/>
+        <path d="M12 14.2c-.7.8-1.8.8-2.5 0M12 14.2c.7.8 1.8.8 2.5 0"/>
+      </svg>
+    {%- when 'window' -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <rect x="4" y="3.5" width="16" height="15" rx="1.6"/>
+        <path d="M12 3.5v15M4 11h16"/>
+        <path d="M3 18.5h18" stroke-linecap="round"/>
+      </svg>
+    {%- when 'paw' -%}
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="7" cy="8.5" rx="1.7" ry="2.3"/>
+        <ellipse cx="12" cy="6.8" rx="1.8" ry="2.5"/>
+        <ellipse cx="17" cy="8.5" rx="1.7" ry="2.3"/>
+        <path d="M12 11c2.4 0 4.6 1.7 5.2 4 .5 1.9-1 3.4-2.9 3.1-.8-.1-1.5-.4-2.3-.4s-1.5.3-2.3.4C7.8 18.4 6.3 16.9 6.8 15c.6-2.3 2.8-4 5.2-4z"/>
+      </svg>
+    {%- when 'shipping' -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2.5 6.5h10v9h-10zM12.5 9.5h4l3 3v3h-7z"/>
+        <circle cx="6" cy="16.5" r="1.6"/><circle cx="16" cy="16.5" r="1.6"/>
+      </svg>
+    {%- when 'returns' -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4.5 9A8 8 0 1 1 4 13"/>
+        <path d="M3.5 4.5V9H8"/>
+      </svg>
+    {%- when 'secure' -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.8 19 5.5v5.3c0 4.6-3 8.1-7 9.4-4-1.3-7-4.8-7-9.4V5.5z"/>
+        <path d="M8.8 12l2.1 2.1 4.3-4.3" stroke-linecap="round"/>
+      </svg>
+    {%- when 'support' -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 5.5h16v11H8l-4 3.2z"/>
+        <path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    {%- when 'star' -%}
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 2.5l2.9 5.9 6.5.95-4.7 4.58 1.1 6.47L12 17.4l-5.8 3.05 1.1-6.47L2.6 9.35l6.5-.95z"/>
+      </svg>
+    {%- when 'instagram' -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="4.5"/>
+        <circle cx="12" cy="12" r="4"/>
+        <circle cx="16.6" cy="7.4" r="1.1" fill="currentColor" stroke="none"/>
+      </svg>
+    {%- when 'facebook' -%}
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <path d="M13.5 21v-7h2.4l.4-2.9h-2.8V9.3c0-.84.26-1.4 1.46-1.4H16.5V5.3c-.27-.04-1.2-.12-2.27-.12-2.25 0-3.79 1.37-3.79 3.9v2.02H8v2.9h2.44V21z"/>
+      </svg>
+    {%- when 'arrow' -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+    {%- when 'email' -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="5" width="18" height="14" rx="2"/>
+        <path d="M3.5 6.5 12 12.5l8.5-6"/>
+      </svg>
+    {%- when 'search' -%}
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/>
+      </svg>
+    {%- else -%}
+      <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="5"/></svg>
+  {%- endcase -%}
+</span>

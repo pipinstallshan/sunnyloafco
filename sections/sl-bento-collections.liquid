@@ -1,0 +1,123 @@
+{%- liquid
+  assign s = section.settings
+  assign count = section.blocks.size
+  if count > 4
+    assign count = 4
+  endif
+-%}
+<section class="sl-section sl-scheme--{{ s.color_scheme }}" {{ section.shopify_attributes }}>
+  <div class="sl-container">
+    {%- if s.eyebrow != blank or s.heading != blank or s.subhead != blank -%}
+      <div class="sl-section-head">
+        {%- if s.eyebrow != blank -%}<p class="sl-eyebrow">{{ s.eyebrow }}</p>{%- endif -%}
+        {%- if s.heading != blank -%}<h2 class="sl-heading">{{ s.heading }}</h2>{%- endif -%}
+        {%- if s.subhead != blank -%}<p class="sl-subheading">{{ s.subhead }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="sl-bento sl-bento--count-{{ count }}">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign coll = block.settings.collection
+          assign heading = block.settings.heading | default: coll.title
+          assign link = block.settings.link
+          if link == blank and coll != blank
+            assign link = coll.url
+          endif
+          assign img = block.settings.image
+          if img == blank and coll.featured_image != blank
+            assign img = coll.featured_image
+          endif
+        -%}
+        <a
+          class="sl-bento__item"
+          {% if link != blank %}href="{{ link }}"{% else %}href="#" aria-disabled="true"{% endif %}
+          {{ block.shopify_attributes }}
+        >
+          {%- if img != blank -%}
+            {{
+              img
+              | image_url: width: 1400
+              | image_tag:
+                loading: 'lazy',
+                sizes: '(min-width: 750px) 50vw, 100vw',
+                widths: '400, 600, 800, 1100, 1400',
+                alt: heading | escape
+            }}
+          {%- else -%}
+            {{ 'collection-1' | placeholder_svg_tag: 'sl-bento__placeholder' }}
+          {%- endif -%}
+          <span class="sl-bento__label">
+            <span>
+              <span class="sl-bento__title">{{ heading }}</span>
+              {%- if block.settings.show_count and coll != blank -%}
+                <span class="sl-bento__count">{{ coll.products_count }} products</span>
+              {%- elsif block.settings.subtitle != blank -%}
+                <span class="sl-bento__count">{{ block.settings.subtitle }}</span>
+              {%- endif -%}
+            </span>
+            <span class="sl-bento__arrow">{% render 'sl-icon', name: 'arrow' %}</span>
+          </span>
+        </a>
+      {%- else -%}
+        <div class="sl-editor-note">Add collection cards in the theme editor.</div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bento collections",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "light", "label": "Light (Warm Milk)" },
+        { "value": "accent", "label": "Accent (Wheatfield)" },
+        { "value": "dark", "label": "Dark (Charcoal)" }
+      ],
+      "default": "light"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Shop by spot" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Find their next favorite place" },
+    {
+      "type": "textarea",
+      "id": "subhead",
+      "label": "Supporting text",
+      "default": "The first card sits large, the rest fill in around it."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "card",
+      "name": "Collection card",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "text", "id": "heading", "label": "Heading override", "info": "Defaults to the collection title." },
+        { "type": "text", "id": "subtitle", "label": "Subtitle", "info": "Shown when product count is off." },
+        { "type": "checkbox", "id": "show_count", "label": "Show product count", "default": false },
+        { "type": "image_picker", "id": "image", "label": "Image override", "info": "Defaults to the collection image." },
+        { "type": "url", "id": "link", "label": "Link override" }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Bento collections",
+      "category": "Sunny Loaf",
+      "blocks": [
+        { "type": "card", "settings": { "heading": "Window perches", "subtitle": "For the sunniest seat in the house" } },
+        { "type": "card", "settings": { "heading": "Cat beds", "subtitle": "Soft landings for serious loafs" } },
+        { "type": "card", "settings": { "heading": "Toys & play", "subtitle": "Keep the afternoon interesting" } },
+        { "type": "card", "settings": { "heading": "Home essentials", "subtitle": "Everyday pieces for life with a cat" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

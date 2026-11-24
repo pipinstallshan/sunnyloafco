@@ -1,0 +1,132 @@
+{%- liquid
+  assign s = section.settings
+  assign product = s.product
+  assign variant = product.selected_or_first_available_variant
+  assign form_id = 'LoafOfWeek-' | append: section.id
+  assign submit_id = form_id | append: '-submit'
+-%}
+<section class="sl-section sl-scheme--{{ s.color_scheme }}" {{ section.shopify_attributes }}>
+  <div class="sl-container">
+    <div class="sl-lotw__grid{% if s.image_position == 'right' %} sl-lotw--image-right{% endif %}">
+      <div class="sl-lotw__media">
+        {%- if s.badge_text != blank -%}
+          <span class="sl-lotw__badge">{{ s.badge_text }}</span>
+        {%- endif -%}
+        {%- if product.featured_media != blank -%}
+          {{
+            product.featured_media
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              sizes: '(min-width: 750px) 55vw, 100vw',
+              widths: '500, 700, 900, 1200',
+              alt: product.featured_media.alt | default: product.title | escape
+          }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag: 'sl-lotw__placeholder' }}
+        {%- endif -%}
+      </div>
+
+      <div class="sl-lotw__content">
+        {%- if s.eyebrow != blank -%}<p class="sl-eyebrow">{{ s.eyebrow }}</p>{%- endif -%}
+        {%- if product != blank -%}
+          <h2 class="sl-lotw__title"><a href="{{ product.url }}">{{ product.title }}</a></h2>
+          {%- liquid
+            assign blurb = s.blurb
+            if blurb == blank
+              assign blurb = product.description | strip_html | truncatewords: 40
+            endif
+          -%}
+          {%- if blurb != blank -%}<p class="sl-lotw__blurb">{{ blurb }}</p>{%- endif -%}
+
+          <p class="sl-lotw__price">
+            {%- if variant.compare_at_price > variant.price -%}
+              {{ variant.price | money }} <s>{{ variant.compare_at_price | money }}</s>
+            {%- else -%}
+              {{ variant.price | money }}
+            {%- endif -%}
+          </p>
+
+          <div class="sl-lotw__buy">
+            <product-form-component
+              data-section-id="{{ section.id }}"
+              data-product-id="{{ product.id }}"
+            >
+              {%- form 'product', product, id: form_id, data-type: 'add-to-cart-form' -%}
+                <input
+                  type="hidden"
+                  name="id"
+                  value="{{ variant.id }}"
+                  ref="variantId"
+                >
+                {% render 'add-to-cart-button',
+                  id: submit_id,
+                  class: 'button',
+                  can_add_to_cart: variant.available,
+                  show_icon: variant.available,
+                  product: product,
+                  add_to_cart_text: s.button_label
+                %}
+              {%- endform -%}
+            </product-form-component>
+          </div>
+
+          {%- if s.show_link -%}
+            <a class="sl-lotw__link" href="{{ product.url }}">{{ s.link_text }} &rarr;</a>
+          {%- endif -%}
+        {%- else -%}
+          <div class="sl-editor-note">Pick a product in the theme editor to feature it here.</div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if product != blank -%}
+  <script src="{{ 'product-form.js' | asset_url }}" type="module"></script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Loaf of the week",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "light", "label": "Light (Warm Milk)" },
+        { "value": "accent", "label": "Accent (Wheatfield)" },
+        { "value": "dark", "label": "Dark (Charcoal)" }
+      ],
+      "default": "accent"
+    },
+    { "type": "product", "id": "product", "label": "Product" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Loaf of the week" },
+    { "type": "text", "id": "badge_text", "label": "Image badge", "default": "Loaf of the week" },
+    {
+      "type": "textarea",
+      "id": "blurb",
+      "label": "Blurb",
+      "info": "Leave empty to use the start of the product description.",
+      "default": "The one we keep coming back to. A warm, sturdy spot that looks like it was always meant to live by your window."
+    },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add to cart" },
+    { "type": "checkbox", "id": "show_link", "label": "Show \"view details\" link", "default": true },
+    { "type": "text", "id": "link_text", "label": "Link text", "default": "See the full details" },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image position (desktop)",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    }
+  ],
+  "presets": [{ "name": "Loaf of the week", "category": "Sunny Loaf" }]
+}
+{% endschema %}
