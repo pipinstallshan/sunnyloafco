@@ -346,6 +346,107 @@
   --color-secondary-button-background: rgb(var(--sl-milk-rgb) / 0.92);
   --color-secondary-button-text: var(--sl-charcoal);
   --color-secondary-button-border: transparent;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+/* Depth scrim — anchors text legibility over any photo */
+.sl-hero__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(130% 90% at 50% -10%, transparent 42%, rgb(var(--sl-charcoal-rgb) / 0.28) 100%),
+    linear-gradient(0deg, rgb(var(--sl-charcoal-rgb) / 0.4) 0%, transparent 52%);
+}
+
+/* Sun-flare glow — the Sunny Loaf motif */
+.sl-hero__glow {
+  position: absolute;
+  top: -14%;
+  inset-inline-end: -8%;
+  width: min(62vw, 560px);
+  aspect-ratio: 1;
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgb(var(--sl-butter-rgb) / 0.6) 0%,
+    rgb(var(--sl-wheat-rgb) / 0.32) 42%,
+    transparent 70%
+  );
+  filter: blur(8px);
+}
+
+.sl-hero--on-media .sl-hero__glow {
+  mix-blend-mode: screen;
+}
+
+/* Eyebrow as a soft chip */
+.sl-hero__eyebrow {
+  padding: 7px 15px 7px 13px;
+  border-radius: 100px;
+  background: rgb(var(--sl-crust-rgb) / 0.1);
+  margin-bottom: 18px;
+}
+
+.sl-hero--on-media .sl-hero__eyebrow {
+  background: rgb(var(--sl-milk-rgb) / 0.16);
+  border: 1px solid rgb(var(--sl-milk-rgb) / 0.24);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+/* Trust strip under the CTAs */
+.sl-hero__trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 24px;
+  margin: 28px 0 0;
+  padding: 20px 0 0;
+  list-style: none;
+  border-top: 1px solid var(--color-border);
+  max-width: 520px;
+}
+
+.sl-hero--on-media .sl-hero__trust {
+  border-top-color: rgb(var(--sl-milk-rgb) / 0.2);
+  color: var(--sl-warm-white);
+  text-shadow: 0 1px 12px rgb(var(--sl-charcoal-rgb) / 0.4);
+}
+
+.sl-hero__trust li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.sl-hero__trust .sl-icon {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  color: var(--sl-butter);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .sl-hero__content > * {
+    animation: sl-hero-rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  .sl-hero__heading { animation-delay: 0.06s; }
+  .sl-hero__tagline { animation-delay: 0.1s; }
+  .sl-hero__content .sl-subheading:last-of-type { animation-delay: 0.14s; }
+  .sl-hero .sl-buttons { animation-delay: 0.18s; }
+  .sl-hero__trust { animation-delay: 0.24s; }
+}
+
+@keyframes sl-hero-rise {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* ---------- Benefits ("Why cats love it") ---------- */

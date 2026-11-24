@@ -60,10 +60,10 @@
         {%- else -%}
           <img
             class="sl-hero__img--desktop"
-            src="{{ 'shopify-hero-2400x900.png' | asset_url }}"
-            width="2400"
+            src="{{ 'sl-hero-cat.jpg' | asset_url }}"
+            width="1140"
             height="900"
-            alt="{{ shop.name | escape }}"
+            alt="A tabby cat loafing in warm window light"
             loading="eager"
             fetchpriority="high"
           >
@@ -86,12 +86,17 @@
     {%- if s.overlay_opacity > 0 -%}
       <div class="sl-hero__overlay"></div>
     {%- endif -%}
+    <div class="sl-hero__scrim" aria-hidden="true"></div>
+  {%- endif -%}
+
+  {%- if s.show_glow -%}
+    <span class="sl-hero__glow" aria-hidden="true"></span>
   {%- endif -%}
 
   <div class="sl-hero__inner sl-container">
     <div class="sl-hero__content">
       {%- if s.eyebrow != blank -%}
-        <p class="sl-eyebrow">{{ s.eyebrow }}</p>
+        <p class="sl-eyebrow sl-hero__eyebrow">{{ s.eyebrow }}</p>
       {%- endif -%}
       {%- if s.heading != blank -%}
         <h1 class="sl-heading sl-hero__heading">{{ s.heading }}</h1>
@@ -121,6 +126,26 @@
             </a>
           {%- endif -%}
         </div>
+      {%- endif -%}
+
+      {%- liquid
+        assign has_trust = false
+        if s.feature_1 != blank or s.feature_2 != blank or s.feature_3 != blank
+          assign has_trust = true
+        endif
+      -%}
+      {%- if has_trust -%}
+        <ul class="sl-hero__trust" role="list">
+          {%- if s.feature_1 != blank -%}
+            <li>{% render 'sl-icon', name: s.feature_1_icon %}<span>{{ s.feature_1 }}</span></li>
+          {%- endif -%}
+          {%- if s.feature_2 != blank -%}
+            <li>{% render 'sl-icon', name: s.feature_2_icon %}<span>{{ s.feature_2 }}</span></li>
+          {%- endif -%}
+          {%- if s.feature_3 != blank -%}
+            <li>{% render 'sl-icon', name: s.feature_3_icon %}<span>{{ s.feature_3 }}</span></li>
+          {%- endif -%}
+        </ul>
       {%- endif -%}
     </div>
   </div>
@@ -164,6 +189,37 @@
     { "type": "url", "id": "button_link", "label": "Primary button link" },
     { "type": "text", "id": "button_label_2", "label": "Secondary button" },
     { "type": "url", "id": "button_link_2", "label": "Secondary button link" },
+    { "type": "header", "content": "Trust strip", "info": "Short reassurance items under the buttons. Leave a line empty to hide it." },
+    { "type": "text", "id": "feature_1", "label": "Item 1", "default": "Free US shipping over $49" },
+    {
+      "type": "select", "id": "feature_1_icon", "label": "Item 1 icon", "default": "shipping",
+      "options": [
+        { "value": "shipping", "label": "Shipping" }, { "value": "returns", "label": "Returns" },
+        { "value": "secure", "label": "Secure" }, { "value": "support", "label": "Support" },
+        { "value": "sun", "label": "Sun" }, { "value": "paw", "label": "Paw" },
+        { "value": "cat", "label": "Cat" }, { "value": "window", "label": "Window" }, { "value": "star", "label": "Star" }
+      ]
+    },
+    { "type": "text", "id": "feature_2", "label": "Item 2", "default": "Easy 30-day returns" },
+    {
+      "type": "select", "id": "feature_2_icon", "label": "Item 2 icon", "default": "returns",
+      "options": [
+        { "value": "shipping", "label": "Shipping" }, { "value": "returns", "label": "Returns" },
+        { "value": "secure", "label": "Secure" }, { "value": "support", "label": "Support" },
+        { "value": "sun", "label": "Sun" }, { "value": "paw", "label": "Paw" },
+        { "value": "cat", "label": "Cat" }, { "value": "window", "label": "Window" }, { "value": "star", "label": "Star" }
+      ]
+    },
+    { "type": "text", "id": "feature_3", "label": "Item 3", "default": "Ships from the US" },
+    {
+      "type": "select", "id": "feature_3_icon", "label": "Item 3 icon", "default": "sun",
+      "options": [
+        { "value": "shipping", "label": "Shipping" }, { "value": "returns", "label": "Returns" },
+        { "value": "secure", "label": "Secure" }, { "value": "support", "label": "Support" },
+        { "value": "sun", "label": "Sun" }, { "value": "paw", "label": "Paw" },
+        { "value": "cat", "label": "Cat" }, { "value": "window", "label": "Window" }, { "value": "star", "label": "Star" }
+      ]
+    },
     { "type": "header", "content": "Background media" },
     {
       "type": "paragraph",
@@ -182,6 +238,7 @@
       "unit": "%",
       "default": 35
     },
+    { "type": "checkbox", "id": "show_glow", "label": "Sun-flare glow", "info": "A soft, warm light in the top corner — the Sunny Loaf motif.", "default": true },
     { "type": "header", "content": "Focal point (desktop)" },
     { "type": "range", "id": "focal_x", "label": "Horizontal", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 50 },
     { "type": "range", "id": "focal_y", "label": "Vertical", "min": 0, "max": 100, "step": 5, "unit": "%", "default": 50 },

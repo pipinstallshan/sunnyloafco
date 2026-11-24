@@ -12,22 +12,59 @@
         "button_link": "shopify://collections/all",
         "button_label_2": "Our story",
         "button_link_2": "shopify://pages/about",
-        "overlay_opacity": 40,
+        "overlay_opacity": 42,
         "height_desktop": 74,
         "height_mobile": 82,
         "content_alignment": "left",
-        "vertical_alignment": "bottom"
+        "vertical_alignment": "bottom",
+        "focal_x": 70,
+        "focal_y": 55,
+        "focal_x_mobile": 64,
+        "focal_y_mobile": 50
       }
     },
     "benefits": {
       "type": "sl-benefits",
       "blocks": {
-        "b1": { "type": "benefit", "settings": { "icon": "sun", "title": "Follows the sun", "text": "Sized for real windowsills, so the warmest patch of the day is always within reach." } },
-        "b2": { "type": "benefit", "settings": { "icon": "window", "title": "A front-row seat", "text": "Perches that sit steady on the glass for hours of bird TV and people-watching." } },
-        "b3": { "type": "benefit", "settings": { "icon": "paw", "title": "Made for loafing", "text": "Soft, tuck-in surfaces that invite paws-under, chin-down, zero-plans napping." } },
-        "b4": { "type": "benefit", "settings": { "icon": "cat", "title": "Looks right at home", "text": "Calm, warm tones chosen to suit your room, not to shout from across it." } }
+        "b1": {
+          "type": "benefit",
+          "settings": {
+            "icon": "sun",
+            "title": "Follows the sun",
+            "text": "Sized for real windowsills, so the warmest patch of the day is always within reach."
+          }
+        },
+        "b2": {
+          "type": "benefit",
+          "settings": {
+            "icon": "window",
+            "title": "A front-row seat",
+            "text": "Perches that sit steady on the glass for hours of bird TV and people-watching."
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "paw",
+            "title": "Made for loafing",
+            "text": "Soft, tuck-in surfaces that invite paws-under, chin-down, zero-plans napping."
+          }
+        },
+        "b4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "cat",
+            "title": "Looks right at home",
+            "text": "Calm, warm tones chosen to suit your room, not to shout from across it."
+          }
+        }
       },
-      "block_order": ["b1", "b2", "b3", "b4"],
+      "block_order": [
+        "b1",
+        "b2",
+        "b3",
+        "b4"
+      ],
       "settings": {
         "color_scheme": "light",
         "eyebrow": "Why cats love it",
@@ -39,12 +76,45 @@
     "collections": {
       "type": "sl-bento-collections",
       "blocks": {
-        "c1": { "type": "card", "settings": { "collection": "", "heading": "Window perches", "subtitle": "For the sunniest seat in the house" } },
-        "c2": { "type": "card", "settings": { "collection": "", "heading": "Cat beds", "subtitle": "Soft landings for serious loafs" } },
-        "c3": { "type": "card", "settings": { "collection": "", "heading": "Toys & play", "subtitle": "Keep the afternoon interesting" } },
-        "c4": { "type": "card", "settings": { "collection": "", "heading": "Home essentials", "subtitle": "Everyday pieces for life with a cat" } }
+        "c1": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "heading": "Window perches",
+            "subtitle": "For the sunniest seat in the house"
+          }
+        },
+        "c2": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "heading": "Cat beds",
+            "subtitle": "Soft landings for serious loafs"
+          }
+        },
+        "c3": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "heading": "Toys & play",
+            "subtitle": "Keep the afternoon interesting"
+          }
+        },
+        "c4": {
+          "type": "card",
+          "settings": {
+            "collection": "",
+            "heading": "Home essentials",
+            "subtitle": "Everyday pieces for life with a cat"
+          }
+        }
       },
-      "block_order": ["c1", "c2", "c3", "c4"],
+      "block_order": [
+        "c1",
+        "c2",
+        "c3",
+        "c4"
+      ],
       "settings": {
         "color_scheme": "light",
         "eyebrow": "Shop by spot",
@@ -68,22 +138,90 @@
     "trust": {
       "type": "sl-trust",
       "blocks": {
-        "t1": { "type": "item", "settings": { "icon": "shipping", "title": "Fast US shipping", "text": "Tracked delivery on every order." } },
-        "t2": { "type": "item", "settings": { "icon": "returns", "title": "30-day returns", "text": "Changed your mind? Send it back." } },
-        "t3": { "type": "item", "settings": { "icon": "secure", "title": "Secure checkout", "text": "Encrypted, trusted payment." } },
-        "t4": { "type": "item", "settings": { "icon": "support", "title": "Friendly support", "text": "Real replies within one business day." } }
+        "t1": {
+          "type": "item",
+          "settings": {
+            "icon": "shipping",
+            "title": "Fast US shipping",
+            "text": "Tracked delivery on every order."
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "icon": "returns",
+            "title": "30-day returns",
+            "text": "Changed your mind? Send it back."
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "icon": "secure",
+            "title": "Secure checkout",
+            "text": "Encrypted, trusted payment."
+          }
+        },
+        "t4": {
+          "type": "item",
+          "settings": {
+            "icon": "support",
+            "title": "Friendly support",
+            "text": "Real replies within one business day."
+          }
+        }
       },
-      "block_order": ["t1", "t2", "t3", "t4"],
-      "settings": { "color_scheme": "accent", "padding_top": 40, "padding_bottom": 40 }
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "color_scheme": "accent",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
     },
     "testimonials": {
       "type": "sl-testimonials",
       "blocks": {
-        "q1": { "type": "quote", "settings": { "is_placeholder": true, "rating": 5, "quote": "She found the sunny perch within an hour and has barely left it since.", "author": "Placeholder name", "location": "Portland, OR" } },
-        "q2": { "type": "quote", "settings": { "is_placeholder": true, "rating": 5, "quote": "Sturdier than it looks and it actually fits our narrow sill. The cat approves.", "author": "Placeholder name", "location": "Austin, TX" } },
-        "q3": { "type": "quote", "settings": { "is_placeholder": true, "rating": 5, "quote": "Shipped quickly and looks right at home in the living room. A proper loafing spot.", "author": "Placeholder name", "location": "Columbus, OH" } }
+        "q1": {
+          "type": "quote",
+          "settings": {
+            "is_placeholder": true,
+            "rating": 5,
+            "quote": "She found the sunny perch within an hour and has barely left it since.",
+            "author": "Placeholder name",
+            "location": "Portland, OR"
+          }
+        },
+        "q2": {
+          "type": "quote",
+          "settings": {
+            "is_placeholder": true,
+            "rating": 5,
+            "quote": "Sturdier than it looks and it actually fits our narrow sill. The cat approves.",
+            "author": "Placeholder name",
+            "location": "Austin, TX"
+          }
+        },
+        "q3": {
+          "type": "quote",
+          "settings": {
+            "is_placeholder": true,
+            "rating": 5,
+            "quote": "Shipped quickly and looks right at home in the living room. A proper loafing spot.",
+            "author": "Placeholder name",
+            "location": "Columbus, OH"
+          }
+        }
       },
-      "block_order": ["q1", "q2", "q3"],
+      "block_order": [
+        "q1",
+        "q2",
+        "q3"
+      ],
       "settings": {
         "color_scheme": "light",
         "eyebrow": "From the sunny side",
@@ -110,12 +248,45 @@
     "faq": {
       "type": "sl-faq",
       "blocks": {
-        "f1": { "type": "qa", "settings": { "question": "How long does shipping take?", "answer": "<p>Orders ship from the US. Please allow 1&ndash;3 business days to process, then typically 5&ndash;10 business days for delivery. You'll get tracking by email when it leaves the warehouse. Edit this to match your real times.</p>", "open": true } },
-        "f2": { "type": "qa", "settings": { "question": "What's your return policy?", "answer": "<p>Returns are accepted within 30 days of delivery, in the condition you received it. If anything arrives damaged or wrong, email hello@sunnyloafco.com and we'll make it right. Edit this to match your real policy.</p>", "open": false } },
-        "f3": { "type": "qa", "settings": { "question": "Will this fit my windowsill and my cat?", "answer": "<p>Every product page lists Width, Height, Length, Weight capacity and Material. Measure your sill and check your cat's weight against the capacity before ordering. Not sure? Email us the measurements and we'll help.</p>", "open": false } },
-        "f4": { "type": "qa", "settings": { "question": "Is it safe for my cat?", "answer": "<p>We choose sturdy, stable pieces and list materials honestly. Always follow the setup instructions, check weight limits, and supervise the first few uses. Edit this with any product-specific safety notes.</p>", "open": false } }
+        "f1": {
+          "type": "qa",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Orders ship from the US. Please allow 1&ndash;3 business days to process, then typically 5&ndash;10 business days for delivery. You'll get tracking by email when it leaves the warehouse. Edit this to match your real times.</p>",
+            "open": true
+          }
+        },
+        "f2": {
+          "type": "qa",
+          "settings": {
+            "question": "What's your return policy?",
+            "answer": "<p>Returns are accepted within 30 days of delivery, in the condition you received it. If anything arrives damaged or wrong, email hello@sunnyloafco.com and we'll make it right. Edit this to match your real policy.</p>",
+            "open": false
+          }
+        },
+        "f3": {
+          "type": "qa",
+          "settings": {
+            "question": "Will this fit my windowsill and my cat?",
+            "answer": "<p>Every product page lists Width, Height, Length, Weight capacity and Material. Measure your sill and check your cat's weight against the capacity before ordering. Not sure? Email us the measurements and we'll help.</p>",
+            "open": false
+          }
+        },
+        "f4": {
+          "type": "qa",
+          "settings": {
+            "question": "Is it safe for my cat?",
+            "answer": "<p>We choose sturdy, stable pieces and list materials honestly. Always follow the setup instructions, check weight limits, and supervise the first few uses. Edit this with any product-specific safety notes.</p>",
+            "open": false
+          }
+        }
       },
-      "block_order": ["f1", "f2", "f3", "f4"],
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
       "settings": {
         "color_scheme": "light",
         "eyebrow": "Good to know",
