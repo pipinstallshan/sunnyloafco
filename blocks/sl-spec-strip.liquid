@@ -1,0 +1,61 @@
+{%- doc -%}
+  Dimensions / spec strip for the product page.
+  Reads product metafields in the "specs" namespace and hides itself when all are empty.
+  Keys: specs.width, specs.height, specs.length, specs.weight_capacity, specs.material
+{%- enddoc -%}
+{%- liquid
+  assign bs = block.settings
+  assign p = closest.product
+  assign mf = p.metafields.specs
+
+  assign width = mf.width.value | default: ''
+  assign height = mf.height.value | default: ''
+  assign length = mf.length.value | default: ''
+  assign capacity = mf.weight_capacity.value | default: ''
+  assign material = mf.material.value | default: ''
+
+  assign has_any = false
+  if width != '' or height != '' or length != '' or capacity != '' or material != ''
+    assign has_any = true
+  endif
+-%}
+{%- if has_any -%}
+  <div
+    class="sl-specs spacing-style"
+    style="{% render 'spacing-style', settings: bs %}"
+    {{ block.shopify_attributes }}
+  >
+    {%- if bs.heading != blank -%}<p class="sl-specs__title">{{ bs.heading }}</p>{%- endif -%}
+    <dl class="sl-specs__list">
+      {%- if width != '' -%}<div class="sl-specs__item"><dt>{{ bs.label_width }}</dt><dd>{{ width }}</dd></div>{%- endif -%}
+      {%- if height != '' -%}<div class="sl-specs__item"><dt>{{ bs.label_height }}</dt><dd>{{ height }}</dd></div>{%- endif -%}
+      {%- if length != '' -%}<div class="sl-specs__item"><dt>{{ bs.label_length }}</dt><dd>{{ length }}</dd></div>{%- endif -%}
+      {%- if capacity != '' -%}<div class="sl-specs__item"><dt>{{ bs.label_capacity }}</dt><dd>{{ capacity }}</dd></div>{%- endif -%}
+      {%- if material != '' -%}<div class="sl-specs__item"><dt>{{ bs.label_material }}</dt><dd>{{ material }}</dd></div>{%- endif -%}
+    </dl>
+  </div>
+{%- elsif request.design_mode -%}
+  <div class="sl-editor-note spacing-style" {{ block.shopify_attributes }}>
+    Spec strip is empty. It appears once this product has metafields in the <strong>specs</strong> namespace
+    (width, height, length, weight_capacity, material). See the README for setup.
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Dimensions / spec strip",
+  "settings": [
+    { "type": "paragraph", "content": "Reads product metafields in the \"specs\" namespace. Hidden on the live store until at least one value is set. See README for setup steps." },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Dimensions" },
+    { "type": "text", "id": "label_width", "label": "Width label", "default": "Width" },
+    { "type": "text", "id": "label_height", "label": "Height label", "default": "Height" },
+    { "type": "text", "id": "label_length", "label": "Length label", "default": "Length" },
+    { "type": "text", "id": "label_capacity", "label": "Weight capacity label", "default": "Holds up to" },
+    { "type": "text", "id": "label_material", "label": "Material label", "default": "Material" },
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding-block-start", "label": "Top", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 4 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 4 }
+  ],
+  "presets": [{ "name": "Dimensions / spec strip", "category": "Sunny Loaf" }]
+}
+{% endschema %}

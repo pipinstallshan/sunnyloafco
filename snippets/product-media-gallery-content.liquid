@@ -24,6 +24,9 @@
     type="module"
   ></script>
 {%- endif -%}
+{%- unless settings.sl_variant_media_swap -%}
+  <script src="{{ 'sl-variant-gallery.js' | asset_url }}" defer></script>
+{%- endunless -%}
 {%- liquid
   assign selected_product = closest.product
   assign selected_variant_media = selected_product.selected_or_first_available_variant.featured_media
@@ -122,8 +125,26 @@
     endif
   endif
 
+  # Sunny Loaf: when sl_variant_media_swap is off (default), the selected variant's
+  # image is NOT moved to the front of the gallery. The featured image stays put and
+  # a small script scrolls to the variant's image instead. When on, Horizon's original
+  # "move variant media first" behaviour is used.
+  assign sl_swap = settings.sl_variant_media_swap
+
   assign sorted_media = '' | split: ','
-  if selected_variant_media
+  if sl_swap == false
+    if block_settings.hide_variants
+      for media in selected_product.media
+        if variant_images contains media.src and media.id != selected_variant_media.id
+          continue
+        endif
+        assign found_media = selected_product.media | where: 'id', media.id
+        assign sorted_media = sorted_media | concat: found_media
+      endfor
+    else
+      assign sorted_media = selected_product.media
+    endif
+  elsif selected_variant_media
     assign sorted_media = sorted_media | concat: selected_product.media | where: 'id', selected_variant_media.id
 
     for media in selected_product.media
@@ -414,6 +435,10 @@
     "
     style="{% render 'spacing-style', settings: block_settings %} --thumbnail-width: {{ block_settings.thumbnail_width }}px; --media-radius: {{ block_settings.media_radius }}px;{% if icons_style contains 'large' %} --slideshow-icon-padding: 0px;{% endif %}--image-gap: {{ block_settings.image_gap }}px;{% unless block_settings.aspect_ratio == 'adapt' %} --gallery-aspect-ratio: {{ block_settings.aspect_ratio }};{% endunless %}{% if constrained_gallery_extra_height != blank %} --constrained-gallery-extra-height: calc({{ constrained_gallery_extra_height }});{% endif %}"
     data-presentation="{{ media_presentation }}"
+    {% if sl_swap == false and selected_variant_media %}
+      data-sl-variant-scroll="true"
+      data-sl-variant-media-id="{{ selected_variant_media.id }}"
+    {% endif %}
     {{ block_shopify_attributes }}
   >
     {% capture slides %}
