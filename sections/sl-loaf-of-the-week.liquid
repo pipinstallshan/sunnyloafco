@@ -9,22 +9,28 @@
   <div class="sl-container">
     <div class="sl-lotw__grid{% if s.image_position == 'right' %} sl-lotw--image-right{% endif %}">
       <div class="sl-lotw__media">
-        {%- if s.badge_text != blank -%}
-          <span class="sl-lotw__badge">{{ s.badge_text }}</span>
-        {%- endif -%}
-        {%- if product.featured_media != blank -%}
-          {{
-            product.featured_media
-            | image_url: width: 1200
-            | image_tag:
-              loading: 'lazy',
-              sizes: '(min-width: 750px) 55vw, 100vw',
-              widths: '500, 700, 900, 1200',
-              alt: product.featured_media.alt | default: product.title | escape
-          }}
-        {%- else -%}
-          {{ 'product-1' | placeholder_svg_tag: 'sl-lotw__placeholder' }}
-        {%- endif -%}
+        <span class="sl-lotw__glow" aria-hidden="true"></span>
+        <div class="sl-lotw__frame">
+          {%- if s.badge_text != blank -%}
+            <span class="sl-lotw__badge">{% render 'sl-icon', name: 'sun' %}{{ s.badge_text }}</span>
+          {%- endif -%}
+          {%- if product.featured_media != blank -%}
+            {{
+              product.featured_media
+              | image_url: width: 1200
+              | image_tag:
+                loading: 'lazy',
+                sizes: '(min-width: 750px) 55vw, 100vw',
+                widths: '500, 700, 900, 1200',
+                alt: product.featured_media.alt | default: product.title | escape
+            }}
+          {%- else -%}
+            <div class="sl-lotw__placeholder">
+              {% render 'sl-icon', name: 'cat' %}
+              <span>Your featured loaf</span>
+            </div>
+          {%- endif -%}
+        </div>
       </div>
 
       <div class="sl-lotw__content">
@@ -39,11 +45,28 @@
           -%}
           {%- if blurb != blank -%}<p class="sl-lotw__blurb">{{ blurb }}</p>{%- endif -%}
 
+          {%- liquid
+            assign has_feat = false
+            if s.feature_1 != blank or s.feature_2 != blank or s.feature_3 != blank
+              assign has_feat = true
+            endif
+          -%}
+          {%- if has_feat -%}
+            <ul class="sl-lotw__features" role="list">
+              {%- if s.feature_1 != blank -%}<li>{% render 'sl-icon', name: 'paw' %}<span>{{ s.feature_1 }}</span></li>{%- endif -%}
+              {%- if s.feature_2 != blank -%}<li>{% render 'sl-icon', name: 'paw' %}<span>{{ s.feature_2 }}</span></li>{%- endif -%}
+              {%- if s.feature_3 != blank -%}<li>{% render 'sl-icon', name: 'paw' %}<span>{{ s.feature_3 }}</span></li>{%- endif -%}
+            </ul>
+          {%- endif -%}
+
           <p class="sl-lotw__price">
             {%- if variant.compare_at_price > variant.price -%}
-              {{ variant.price | money }} <s>{{ variant.compare_at_price | money }}</s>
+              <span class="sl-lotw__price-now">{{ variant.price | money }}</span>
+              <s>{{ variant.compare_at_price | money }}</s>
+              {%- assign saved = variant.compare_at_price | minus: variant.price -%}
+              <span class="sl-lotw__save">Save {{ saved | money }}</span>
             {%- else -%}
-              {{ variant.price | money }}
+              <span class="sl-lotw__price-now">{{ variant.price | money }}</span>
             {%- endif -%}
           </p>
 
@@ -73,6 +96,10 @@
 
           {%- if s.show_link -%}
             <a class="sl-lotw__link" href="{{ product.url }}">{{ s.link_text }} &rarr;</a>
+          {%- endif -%}
+
+          {%- if s.reassurance != blank -%}
+            <p class="sl-lotw__reassure">{% render 'sl-icon', name: 'shipping' %}<span>{{ s.reassurance }}</span></p>
           {%- endif -%}
         {%- else -%}
           <div class="sl-editor-note">Pick a product in the theme editor to feature it here.</div>
@@ -113,9 +140,15 @@
       "info": "Leave empty to use the start of the product description.",
       "default": "The one we keep coming back to. A warm, sturdy spot that looks like it was always meant to live by your window."
     },
+    { "type": "header", "content": "Feature list", "info": "Up to three short selling points. Leave a line empty to hide it." },
+    { "type": "text", "id": "feature_1", "label": "Feature 1", "default": "Sized for real windowsills" },
+    { "type": "text", "id": "feature_2", "label": "Feature 2", "default": "Holds the biggest loafs with room to stretch" },
+    { "type": "text", "id": "feature_3", "label": "Feature 3", "default": "Warm, washable, and built to last" },
+    { "type": "header", "content": "Buy" },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Add to cart" },
     { "type": "checkbox", "id": "show_link", "label": "Show \"view details\" link", "default": true },
     { "type": "text", "id": "link_text", "label": "Link text", "default": "See the full details" },
+    { "type": "text", "id": "reassurance", "label": "Reassurance line", "default": "Free US shipping over $49 · Easy 30-day returns" },
     {
       "type": "select",
       "id": "image_position",
