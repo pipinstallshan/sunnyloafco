@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sunny Loaf Co. — theme preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/sunnyloaf.css">
+<style>
+  /* Minimal stand-ins for Horizon tokens so the preview renders faithfully. */
+  :root{
+    --font-heading--family:'Fraunces',serif;
+    --font-body--family:'Figtree',sans-serif;
+    --font-subheading--family:'Figtree',sans-serif;
+    --page-width:1280px;--page-margin:24px;
+    --color-primary-button-background:var(--sl-crust);--color-primary-button-text:var(--sl-milk);
+    --color-primary-button-border:var(--sl-crust);
+    --color-secondary-button-background:var(--sl-wheat);--color-secondary-button-text:var(--sl-charcoal);
+    --color-secondary-button-border:var(--sl-wheat);
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--sl-milk);color:var(--sl-charcoal);font-family:var(--font-body--family);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:var(--font-heading--family);font-weight:600;letter-spacing:-0.015em;line-height:1.05;margin:0}
+  a{color:inherit}
+  .button,.button-secondary{display:inline-flex;align-items:center;justify-content:center;gap:.5em;border-radius:12px;font-family:var(--font-body--family);font-weight:600;font-size:1rem;text-decoration:none;padding:14px 28px;border:1px solid transparent;cursor:pointer}
+  .button{background:var(--sl-crust);color:var(--sl-milk)}
+  .button-secondary{background:var(--sl-wheat);color:var(--sl-charcoal);border-color:var(--sl-wheat)}
+  .sl-hero--on-media .button-secondary{background:rgba(255,251,243,.92);color:var(--sl-charcoal);border-color:transparent}
+  img{display:block}
+  /* preview header/announcement */
+  .pv-ann{background:var(--sl-wheat);color:var(--sl-charcoal);text-align:center;font-size:.8125rem;font-weight:600;padding:10px}
+  .pv-head{position:sticky;top:0;z-index:5;background:var(--sl-milk);border-bottom:1px solid var(--sl-wheat);display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+  .pv-head img{height:34px;width:auto}
+  .pv-nav{display:flex;gap:22px;font-weight:600;font-size:.9rem}
+  @media(max-width:749px){.pv-nav{display:none}}
+  .rte p{margin:0 0 .8em}
+  .pv-section-label{max-width:1280px;margin:0 auto;padding:6px 24px;font:600 .7rem/1 var(--font-subheading--family);letter-spacing:.12em;text-transform:uppercase;color:var(--sl-crust);opacity:.7}
+</style>
+</head>
+<body class="sl-warm-shadows">
+
+<div class="pv-ann">Free US shipping on orders over $49 ☀️</div>
+<header class="pv-head">
+  <img src="../../assets/lockup-horizontal.png" alt="Sunny Loaf Co.">
+  <nav class="pv-nav"><span>Shop</span><span>Window perches</span><span>Beds</span><span>Our story</span><span>More</span></nav>
+  <div style="display:flex;gap:16px">🔍 👤 🛒</div>
+</header>
+
+<!-- HERO -->
+<section class="sl-hero sl-scheme--dark sl-hero--on-media" style="min-height:600px;--sl-hero-height:600px;--sl-hero-height-mobile:560px;--sl-overlay:.42;--sl-v-align:flex-end;--sl-v-align-mobile:flex-end;--sl-h-align:flex-start;--sl-text-align:left;">
+  <div class="sl-hero__media"><img src="../../assets/shopify-hero-2400x900.png" alt=""></div>
+  <div class="sl-hero__overlay"></div>
+  <div class="sl-hero__inner sl-container">
+    <div class="sl-hero__content">
+      <p class="sl-eyebrow">Sunny home goods for cats</p>
+      <h1 class="sl-heading sl-hero__heading">A warmer spot for the cat who loafs</h1>
+      <p class="sl-subheading sl-hero__tagline">Made for cats who loaf in the sun.</p>
+      <p class="sl-subheading">Window perches, beds, and sunny-home essentials, chosen with care and shipped from the US.</p>
+      <div class="sl-buttons"><a class="button" href="#">Shop the collection</a><a class="button-secondary" href="#">Our story</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="sl-section sl-scheme--light">
+  <div class="sl-container">
+    <div class="sl-section-head sl-section-head--center">
+      <p class="sl-eyebrow">Why cats love it</p>
+      <h2 class="sl-heading">Built around the way cats actually live</h2>
+      <p class="sl-subheading">Sunny windows, soft landings, and a spot that is unmistakably theirs.</p>
+    </div>
+    <div class="sl-benefits__grid" style="--sl-columns:4">
+      <div class="sl-benefit sl-card sl-card--shadow"><span class="sl-icon" style="color:var(--sl-crust)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="4.2" fill="currentColor" stroke="none"/><path d="M12 2.4v2.4M12 19.2v2.4M4.3 4.3l1.7 1.7M18 18l1.7 1.7M2.4 12h2.4M19.2 12h2.4M4.3 19.7l1.7-1.7M18 6l1.7-1.7"/></svg></span><h3 class="sl-benefit__title">Follows the sun</h3><p class="sl-benefit__text">Sized for real windowsills, so the warmest patch of the day is always within reach.</p></div>
+      <div class="sl-benefit sl-card sl-card--shadow"><span class="sl-icon" style="color:var(--sl-crust)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="4" y="3.5" width="16" height="15" rx="1.6"/><path d="M12 3.5v15M4 11h16"/></svg></span><h3 class="sl-benefit__title">A front-row seat</h3><p class="sl-benefit__text">Perches that sit steady on the glass for hours of bird TV and people-watching.</p></div>
+      <div class="sl-benefit sl-card sl-card--shadow"><span class="sl-icon" style="color:var(--sl-crust)"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="8.5" rx="1.7" ry="2.3"/><ellipse cx="12" cy="6.8" rx="1.8" ry="2.5"/><ellipse cx="17" cy="8.5" rx="1.7" ry="2.3"/><path d="M12 11c2.4 0 4.6 1.7 5.2 4 .5 1.9-1 3.4-2.9 3.1-.8-.1-1.5-.4-2.3-.4s-1.5.3-2.3.4C7.8 18.4 6.3 16.9 6.8 15c.6-2.3 2.8-4 5.2-4z"/></svg></span><h3 class="sl-benefit__title">Made for loafing</h3><p class="sl-benefit__text">Soft, tuck-in surfaces that invite paws-under, chin-down, zero-plans napping.</p></div>
+      <div class="sl-benefit sl-card sl-card--shadow"><span class="sl-icon" style="color:var(--sl-crust)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4.5 9.5 3.2 4.8c-.1-.5.4-.9.9-.6L8 6.3M19.5 9.5l1.3-4.7c.1-.5-.4-.9-.9-.6L16 6.3"/><path d="M4.5 10.5c0-2.2 3.4-4 7.5-4s7.5 1.8 7.5 4v2.8c0 3.5-3.4 5.9-7.5 5.9s-7.5-2.4-7.5-5.9z"/><path d="M9.3 12.2h.01M14.7 12.2h.01" stroke-width="2"/><path d="M12 14.2c-.7.8-1.8.8-2.5 0M12 14.2c.7.8 1.8.8 2.5 0"/></svg></span><h3 class="sl-benefit__title">Looks right at home</h3><p class="sl-benefit__text">Calm, warm tones chosen to suit your room, not to shout from across it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENTO -->
+<section class="sl-section sl-scheme--light">
+  <div class="sl-container">
+    <div class="sl-section-head"><p class="sl-eyebrow">Shop by spot</p><h2 class="sl-heading">Find their next favorite place</h2></div>
+    <div class="sl-bento sl-bento--count-4">
+      <a class="sl-bento__item" href="#" style="background:#d9b98a"><span class="sl-bento__label"><span><span class="sl-bento__title">Window perches</span><span class="sl-bento__count">For the sunniest seat in the house</span></span><span class="sl-bento__arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span></a>
+      <a class="sl-bento__item" href="#" style="background:#caa36f"><span class="sl-bento__label"><span><span class="sl-bento__title">Cat beds</span><span class="sl-bento__count">Soft landings for serious loafs</span></span><span class="sl-bento__arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span></a>
+      <a class="sl-bento__item" href="#" style="background:#b98b58"><span class="sl-bento__label"><span><span class="sl-bento__title">Toys &amp; play</span><span class="sl-bento__count">Keep the afternoon interesting</span></span><span class="sl-bento__arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span></a>
+      <a class="sl-bento__item" href="#" style="background:#d9b98a"><span class="sl-bento__label"><span><span class="sl-bento__title">Home essentials</span><span class="sl-bento__count">Everyday pieces for life with a cat</span></span><span class="sl-bento__arrow"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></span></a>
+    </div>
+  </div>
+</section>
+
+<!-- LOAF OF THE WEEK -->
+<section class="sl-section sl-scheme--accent">
+  <div class="sl-container">
+    <div class="sl-lotw__grid">
+      <div class="sl-lotw__media" style="background:#caa36f"><span class="sl-lotw__badge">Loaf of the week</span></div>
+      <div class="sl-lotw__content">
+        <p class="sl-eyebrow">Loaf of the week</p>
+        <h2 class="sl-lotw__title"><a href="#">Sunny Sill Window Perch</a></h2>
+        <p class="sl-lotw__blurb">The one we keep coming back to. A warm, sturdy spot that looks like it was always meant to live by your window.</p>
+        <p class="sl-lotw__price">$39.00 <s>$49.00</s></p>
+        <div class="sl-lotw__buy"><a class="button" href="#">Add to cart</a></div>
+        <a class="sl-lotw__link" href="#">See the full details →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="sl-section sl-scheme--accent" style="--sl-pad-top:40px;--sl-pad-bottom:40px">
+  <div class="sl-container">
+    <ul class="sl-trust__list sl-trust--compact" style="--sl-columns:4">
+      <li class="sl-trust__item"><span class="sl-icon" style="color:var(--sl-crust)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M2.5 6.5h10v9h-10zM12.5 9.5h4l3 3v3h-7z"/><circle cx="6" cy="16.5" r="1.6"/><circle cx="16" cy="16.5" r="1.6"/></svg></span><div><p class="sl-trust__title">Fast US shipping</p><p class="sl-trust__text">Tracked delivery on every order.</p></div></li>
+      <li class="sl-trust__item"><span class="sl-icon" style="color:var(--sl-crust)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 9A8 8 0 1 1 4 13"/><path d="M3.5 4.5V9H8"/></svg></span><div><p class="sl-trust__title">30-day returns</p><p class="sl-trust__text">Changed your mind? Send it back.</p></div></li>
+      <li class="sl-trust__item"><span class="sl-icon" style="color:var(--sl-crust)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.8 19 5.5v5.3c0 4.6-3 8.1-7 9.4-4-1.3-7-4.8-7-9.4V5.5z"/><path d="M8.8 12l2.1 2.1 4.3-4.3" stroke-linecap="round"/></svg></span><div><p class="sl-trust__title">Secure checkout</p><p class="sl-trust__text">Encrypted, trusted payment.</p></div></li>
+      <li class="sl-trust__item"><span class="sl-icon" style="color:var(--sl-crust)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 5.5h16v11H8l-4 3.2z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-width="2" stroke-linecap="round"/></svg></span><div><p class="sl-trust__title">Friendly support</p><p class="sl-trust__text">Real replies within one business day.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="sl-section sl-scheme--light">
+  <div class="sl-container">
+    <div class="sl-section-head sl-section-head--center"><p class="sl-eyebrow">From the sunny side</p><h2 class="sl-heading">Loved by cats, chosen by cat people</h2></div>
+    <div class="sl-testimonials__grid">
+      <figure class="sl-quote sl-card sl-card--shadow"><span class="sl-placeholder-note">Placeholder · edit or remove</span><div class="sl-quote__stars">★★★★★</div><blockquote class="sl-quote__text">She found the sunny perch within an hour and has barely left it since.</blockquote><figcaption class="sl-quote__author"><span>Placeholder name · Portland, OR</span></figcaption></figure>
+      <figure class="sl-quote sl-card sl-card--shadow"><span class="sl-placeholder-note">Placeholder · edit or remove</span><div class="sl-quote__stars">★★★★★</div><blockquote class="sl-quote__text">Sturdier than it looks and it actually fits our narrow sill. The cat approves.</blockquote><figcaption class="sl-quote__author"><span>Placeholder name · Austin, TX</span></figcaption></figure>
+      <figure class="sl-quote sl-card sl-card--shadow"><span class="sl-placeholder-note">Placeholder · edit or remove</span><div class="sl-quote__stars">★★★★★</div><blockquote class="sl-quote__text">Shipped quickly and looks right at home in the living room. A proper loafing spot.</blockquote><figcaption class="sl-quote__author"><span>Placeholder name · Columbus, OH</span></figcaption></figure>
+    </div>
+    <div class="sl-ugc">
+      <div class="sl-ugc__head"><h3>Tag @sunnyloafco to be featured</h3><a class="sl-lotw__link" href="#">Follow on Instagram →</a></div>
+      <div class="sl-ugc__grid">
+        <span class="sl-ugc__tile sl-ugc__tile--empty"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="8.5" rx="1.7" ry="2.3"/><ellipse cx="12" cy="6.8" rx="1.8" ry="2.5"/><ellipse cx="17" cy="8.5" rx="1.7" ry="2.3"/><path d="M12 11c2.4 0 4.6 1.7 5.2 4 .5 1.9-1 3.4-2.9 3.1-.8-.1-1.5-.4-2.3-.4s-1.5.3-2.3.4C7.8 18.4 6.3 16.9 6.8 15c.6-2.3 2.8-4 5.2-4z"/></svg></span></span>
+        <span class="sl-ugc__tile sl-ugc__tile--empty"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="8.5" rx="1.7" ry="2.3"/><ellipse cx="12" cy="6.8" rx="1.8" ry="2.5"/><ellipse cx="17" cy="8.5" rx="1.7" ry="2.3"/><path d="M12 11c2.4 0 4.6 1.7 5.2 4 .5 1.9-1 3.4-2.9 3.1-.8-.1-1.5-.4-2.3-.4s-1.5.3-2.3.4C7.8 18.4 6.3 16.9 6.8 15c.6-2.3 2.8-4 5.2-4z"/></svg></span></span>
+        <span class="sl-ugc__tile sl-ugc__tile--empty"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="8.5" rx="1.7" ry="2.3"/><ellipse cx="12" cy="6.8" rx="1.8" ry="2.5"/><ellipse cx="17" cy="8.5" rx="1.7" ry="2.3"/><path d="M12 11c2.4 0 4.6 1.7 5.2 4 .5 1.9-1 3.4-2.9 3.1-.8-.1-1.5-.4-2.3-.4s-1.5.3-2.3.4C7.8 18.4 6.3 16.9 6.8 15c.6-2.3 2.8-4 5.2-4z"/></svg></span></span>
+        <span class="sl-ugc__tile sl-ugc__tile--empty"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="8.5" rx="1.7" ry="2.3"/><ellipse cx="12" cy="6.8" rx="1.8" ry="2.5"/><ellipse cx="17" cy="8.5" rx="1.7" ry="2.3"/><path d="M12 11c2.4 0 4.6 1.7 5.2 4 .5 1.9-1 3.4-2.9 3.1-.8-.1-1.5-.4-2.3-.4s-1.5.3-2.3.4C7.8 18.4 6.3 16.9 6.8 15c.6-2.3 2.8-4 5.2-4z"/></svg></span></span>
+        <span class="sl-ugc__tile sl-ugc__tile--empty"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="8.5" rx="1.7" ry="2.3"/><ellipse cx="12" cy="6.8" rx="1.8" ry="2.5"/><ellipse cx="17" cy="8.5" rx="1.7" ry="2.3"/><path d="M12 11c2.4 0 4.6 1.7 5.2 4 .5 1.9-1 3.4-2.9 3.1-.8-.1-1.5-.4-2.3-.4s-1.5.3-2.3.4C7.8 18.4 6.3 16.9 6.8 15c.6-2.3 2.8-4 5.2-4z"/></svg></span></span>
+        <span class="sl-ugc__tile sl-ugc__tile--empty"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="currentColor"><ellipse cx="7" cy="8.5" rx="1.7" ry="2.3"/><ellipse cx="12" cy="6.8" rx="1.8" ry="2.5"/><ellipse cx="17" cy="8.5" rx="1.7" ry="2.3"/><path d="M12 11c2.4 0 4.6 1.7 5.2 4 .5 1.9-1 3.4-2.9 3.1-.8-.1-1.5-.4-2.3-.4s-1.5.3-2.3.4C7.8 18.4 6.3 16.9 6.8 15c.6-2.3 2.8-4 5.2-4z"/></svg></span></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EMAIL -->
+<section class="sl-section sl-scheme--dark">
+  <div class="sl-container">
+    <div class="sl-signup sl-signup--boxed">
+      <div class="sl-signup__inner">
+        <div><p class="sl-eyebrow">Join the sunny side</p><h2 class="sl-heading">Notes from the sunny window</h2><p class="sl-subheading">The occasional email: new arrivals, sunny-spot tips, and the odd very good loaf. No spam, unsubscribe anytime.</p></div>
+        <div><div class="sl-signup__form-row"><input class="sl-input" type="email" placeholder="you@example.com"><button class="button">Keep me posted</button></div><p class="sl-signup__fineprint">By subscribing you agree to receive marketing emails from Sunny Loaf Co.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="sl-section sl-scheme--light">
+  <div class="sl-container">
+    <div class="sl-faq__layout">
+      <div><p class="sl-eyebrow">Good to know</p><h2 class="sl-heading">Questions, answered</h2><p class="sl-subheading">Shipping, returns, sizing and cat safety. Edit any of these to match your real policies.</p></div>
+      <div class="sl-faq__list">
+        <details class="sl-faq__item" open><summary><span>How long does shipping take?</span><span class="sl-faq__icon"></span></summary><div class="sl-faq__answer rte"><p>Orders ship from the US. Please allow 1–3 business days to process, then typically 5–10 business days for delivery.</p></div></details>
+        <details class="sl-faq__item"><summary><span>What's your return policy?</span><span class="sl-faq__icon"></span></summary><div class="sl-faq__answer rte"><p>Returns are accepted within 30 days of delivery, in the condition you received it.</p></div></details>
+        <details class="sl-faq__item"><summary><span>Will this fit my windowsill and my cat?</span><span class="sl-faq__icon"></span></summary><div class="sl-faq__answer rte"><p>Every product page lists Width, Height, Length, Weight capacity and Material.</p></div></details>
+        <details class="sl-faq__item"><summary><span>Is it safe for my cat?</span><span class="sl-faq__icon"></span></summary><div class="sl-faq__answer rte"><p>We choose sturdy, stable pieces and list materials honestly.</p></div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="sl-section sl-scheme--dark" style="--sl-pad-top:48px;--sl-pad-bottom:32px">
+  <div class="sl-container" style="display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
+    <div><img src="../../assets/lockup-horizontal-on-charcoal.png" alt="Sunny Loaf Co." style="height:52px;width:auto"><p class="sl-hero__tagline" style="margin-top:12px">Made for cats who loaf in the sun.</p><p style="margin-top:8px"><a href="#">hello@sunnyloafco.com</a></p></div>
+    <div><strong>Shop</strong><p style="opacity:.8;margin:.5em 0 0">Window perches<br>Cat beds<br>Toys &amp; play<br>Home essentials</p></div>
+    <div><strong>Help</strong><p style="opacity:.8;margin:.5em 0 0">Shipping<br>Returns<br>Contact<br>FAQ</p></div>
+    <div><strong>Follow</strong><p style="opacity:.8;margin:.5em 0 0">Instagram @sunnyloafco<br>Facebook Sunny Loaf Co.</p></div>
+  </div>
+</footer>
+
+</body>
+</html>
