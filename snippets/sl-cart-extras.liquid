@@ -1,0 +1,91 @@
+{%- doc -%}
+  Sunny Loaf cart extras: free-shipping progress bar + upsell.
+  Server-rendered, so it recomputes whenever the cart section re-renders.
+{%- enddoc -%}
+{%- liquid
+  assign threshold = settings.sl_free_shipping_threshold | default: 0
+  assign threshold_cents = threshold | times: 100
+-%}
+
+{%- if settings.sl_free_shipping_enabled and threshold_cents > 0 and cart.item_count > 0 -%}
+  {%- liquid
+    assign total = cart.total_price
+    if total >= threshold_cents
+      assign progress = 100
+      assign unlocked = true
+    else
+      assign progress = total | times: 100 | divided_by: threshold_cents
+      assign unlocked = false
+    endif
+    assign remaining = threshold_cents | minus: total
+    assign remaining_money = remaining | money
+  -%}
+  <div class="sl-ship-bar" data-sl-ship-bar>
+    <p class="sl-ship-bar__text">
+      {%- if unlocked -%}
+        {{ settings.sl_free_shipping_success_text }}
+      {%- else -%}
+        {{ settings.sl_free_shipping_progress_text | replace: '[amount]', remaining_money }}
+      {%- endif -%}
+    </p>
+    <div class="sl-ship-bar__track" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="{{ progress }}">
+      <span class="sl-ship-bar__fill" style="--sl-progress: {{ progress }}%;"></span>
+    </div>
+  </div>
+{%- endif -%}
+
+{%- if settings.sl_cart_upsell_enabled and cart.item_count > 0 -%}
+  {%- liquid
+    assign upsell_products = settings.sl_cart_upsell_products
+    # Collect variant ids already in the cart to avoid upselling what's there.
+    assign cart_variant_ids = ''
+    for item in cart.items
+      assign cart_variant_ids = cart_variant_ids | append: ',' | append: item.variant_id | append: ','
+    endfor
+    assign shown = 0
+  -%}
+  {%- if upsell_products.size > 0 -%}
+    <div class="sl-upsell" data-sl-upsell>
+      {%- if settings.sl_cart_upsell_heading != blank -%}
+        <p class="sl-upsell__title">{{ settings.sl_cart_upsell_heading }}</p>
+      {%- endif -%}
+      <ul class="sl-upsell__list">
+        {%- for up in upsell_products -%}
+          {%- liquid
+            assign up_variant = up.selected_or_first_available_variant
+            assign id_token = ',' | append: up_variant.id | append: ','
+          -%}
+          {%- if shown < 3 and up.available and up_variant != blank -%}
+            {%- unless cart_variant_ids contains id_token -%}
+              {%- assign shown = shown | plus: 1 -%}
+              <li class="sl-upsell__item">
+                <a class="sl-upsell__thumb" href="{{ up.url }}">
+                  {%- if up.featured_media -%}
+                    {{ up.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', width: 56, height: 56, alt: up.title | escape }}
+                  {%- endif -%}
+                </a>
+                <div>
+                  <a class="sl-upsell__name" href="{{ up.url }}">{{ up.title }}</a>
+                  <span class="sl-upsell__price">{{ up_variant.price | money }}</span>
+                </div>
+                <product-form-component data-product-id="{{ up.id }}">
+                  {%- form 'product', up, data-type: 'add-to-cart-form' -%}
+                    <input type="hidden" name="id" value="{{ up_variant.id }}" ref="variantId">
+                    <button type="submit" name="add" class="button-secondary sl-upsell__add">
+                      {{ 'actions.add_to_cart' | t | default: 'Add' }}
+                    </button>
+                  {%- endform -%}
+                </product-form-component>
+              </li>
+            {%- endunless -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </ul>
+    </div>
+    {%- if shown > 0 -%}
+      <script src="{{ 'product-form.js' | asset_url }}" type="module"></script>
+    {%- endif -%}
+  {%- elsif request.design_mode -%}
+    <div class="sl-editor-note">Pick upsell products in Theme settings &rarr; Sunny Loaf, or turn the upsell off.</div>
+  {%- endif -%}
+{%- endif -%}

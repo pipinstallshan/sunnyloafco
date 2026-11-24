@@ -130,7 +130,7 @@
         "type": "product_list",
         "id": "sl_cart_upsell_products",
         "label": "Upsell products",
-        "info": "Leave empty to use Shopify's automatic product recommendations for the first item in the cart.",
+        "info": "Leave empty to hide the upsell.",
         "limit": 4
       }
     ]

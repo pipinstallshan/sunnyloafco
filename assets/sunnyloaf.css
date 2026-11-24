@@ -1094,11 +1094,21 @@ media-gallery slideshow-slide,
   border: 1px solid var(--sl-wheat);
 }
 
+.sl-upsell__thumb {
+  display: block;
+  width: 56px;
+  height: 56px;
+}
+
 .sl-upsell__item img {
   width: 56px;
   height: 56px;
   border-radius: 8px;
   object-fit: cover;
+}
+
+.sl-upsell__item product-form-component {
+  display: block;
 }
 
 .sl-upsell__name {
