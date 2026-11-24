@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "about": {
+      "type": "sl-about",
+      "settings": {
+        "color_scheme": "light",
+        "eyebrow": "Our story",
+        "heading": "A sunny little home brand for cats",
+        "term": "loaf",
+        "pronunciation": "noun, cat slang",
+        "definition": "A cat sitting tucked up with its paws hidden under its chest, like it plans to stay until the sun moves. That is the whole warmth of our name.",
+        "body": "<p>Sunny Loaf Co. makes thoughtfully chosen home essentials for American cat owners: window perches, beds, and everyday pieces for cats who loaf in the sun. We pick a few things worth bringing into a real home, photograph them honestly, and ship them from the US with tracking.</p><p>No bakery here, just cats, sunny windows, and the people who arrange the furniture around them.</p>",
+        "button_label": "Shop the collection",
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "faq": {
+      "type": "sl-faq",
+      "blocks": {
+        "f1": { "type": "qa", "settings": { "question": "How long does shipping take?", "answer": "<p>Orders ship from the US. Please allow 1&ndash;3 business days to process, then typically 5&ndash;10 business days for delivery. Edit this to match your real times.</p>", "open": false } },
+        "f2": { "type": "qa", "settings": { "question": "How can I reach you?", "answer": "<p>Email hello@sunnyloafco.com and we'll reply within one business day.</p>", "open": false } }
+      },
+      "block_order": ["f1", "f2"],
+      "settings": { "color_scheme": "accent", "eyebrow": "Good to know", "heading": "A few common questions", "subhead": "" }
+    }
+  },
+  "order": ["about", "faq"]
+}
