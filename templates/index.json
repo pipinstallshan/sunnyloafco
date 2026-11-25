@@ -12,14 +12,14 @@
         "button_link": "shopify://collections/all",
         "button_label_2": "Our story",
         "button_link_2": "shopify://pages/about",
-        "overlay_opacity": 42,
+        "overlay_opacity": 40,
         "height_desktop": 74,
         "height_mobile": 82,
         "content_alignment": "left",
         "vertical_alignment": "bottom",
         "focal_x": 70,
         "focal_y": 55,
-        "focal_x_mobile": 64,
+        "focal_x_mobile": 65,
         "focal_y_mobile": 50
       }
     },

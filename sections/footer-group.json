@@ -326,17 +326,12 @@
             "tiktok_url": "",
             "twitter_url": ""
           }
-        },
-        "payment_icons": {
-          "type": "payment-icons",
-          "settings": {}
         }
       },
       "block_order": [
         "copyright",
         "policy_list",
-        "social_icons",
-        "payment_icons"
+        "social_icons"
       ],
       "settings": {
         "section_width": "page-width",
