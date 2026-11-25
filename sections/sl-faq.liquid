@@ -9,9 +9,9 @@
         {%- if s.heading != blank -%}<h2 class="sl-heading">{{ s.heading }}</h2>{%- endif -%}
         {%- if s.subhead != blank -%}<p class="sl-subheading">{{ s.subhead }}</p>{%- endif -%}
       </div>
-      <div class="sl-faq__list">
+      <div class="sl-faq__list" data-accordion-exclusive>
         {%- for block in section.blocks -%}
-          <details class="sl-faq__item" name="sl-faq-{{ section.id }}"{% if block.settings.open %} open{% endif %} {{ block.shopify_attributes }}>
+          <details class="sl-faq__item"{% if block.settings.open %} open{% endif %} {{ block.shopify_attributes }}>
             <summary>
               <span>{{ block.settings.question }}</span>
               <span class="sl-faq__icon" aria-hidden="true"></span>
@@ -25,6 +25,8 @@
     </div>
   </div>
 </section>
+
+<script src="{{ 'sl-accordion.js' | asset_url }}" defer></script>
 
 {% schema %}
 {

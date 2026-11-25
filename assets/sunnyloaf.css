@@ -1132,32 +1132,8 @@
   max-width: 68ch;
 }
 
-/* Smooth expand / collapse for the <details> accordions (FAQ + product tabs).
-   Uses ::details-content so both open and close animate in modern browsers;
-   older browsers simply fall back to the native instant toggle. */
-.sl-faq__list {
-  interpolate-size: allow-keywords;
-}
-
-.sl-faq__item::details-content {
-  block-size: 0;
-  overflow: hidden;
-}
-
-.sl-faq__item[open]::details-content {
-  block-size: auto;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .sl-faq__item::details-content {
-    opacity: 0;
-    transition: block-size 0.32s ease, opacity 0.26s ease;
-  }
-
-  .sl-faq__item[open]::details-content {
-    opacity: 1;
-  }
-}
+/* The <details> accordions (FAQ + product tabs) are animated open and closed
+   by sl-accordion.js, which also handles single-open groups. */
 
 /* ---------- Product page: spec strip ---------- */
 .sl-specs {
