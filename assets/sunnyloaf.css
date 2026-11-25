@@ -1132,8 +1132,33 @@
   max-width: 68ch;
 }
 
-/* The <details> accordions (FAQ + product tabs) are animated open and closed
-   by sl-accordion.js, which also handles single-open groups. */
+/* Smooth open AND close for the <details> accordions (FAQ + product tabs).
+   ::details-content animates height 0<->auto (needs interpolate-size) and the
+   content-visibility transition with allow-discrete keeps the close animating
+   even when sl-accordion.js removes [open] from a sibling (single-open FAQ).
+   Browsers without ::details-content fall back to the native instant toggle. */
+.sl-faq__list {
+  interpolate-size: allow-keywords;
+}
+
+.sl-faq__item::details-content {
+  height: 0;
+  overflow: clip;
+  opacity: 0;
+  transition: height 0.32s ease, opacity 0.26s ease, content-visibility 0.32s;
+  transition-behavior: allow-discrete;
+}
+
+.sl-faq__item[open]::details-content {
+  height: auto;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sl-faq__item::details-content {
+    transition: none;
+  }
+}
 
 /* ---------- Product page: spec strip ---------- */
 .sl-specs {
