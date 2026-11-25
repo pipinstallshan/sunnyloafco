@@ -11,16 +11,15 @@
   "current": {
     "logo_height": 40,
     "logo_height_mobile": 30,
-    "color_palette": {
-      "background": "#F8F1E3",
-      "foreground": "#2A231C",
-      "color1": "#7A4314",
-      "color2": "#F3D89A",
-      "color3": "#E5B33A",
-      "color4": "#FFFBF3"
-    },
+    "sl_variant_media_swap": false,
+    "sl_warm_shadows": true,
+    "sl_free_shipping_enabled": true,
+    "sl_free_shipping_threshold": 49,
+    "sl_free_shipping_progress_text": "You're [amount] away from free US shipping ☀️",
+    "sl_free_shipping_success_text": "You've unlocked free US shipping ☀️",
+    "sl_cart_upsell_enabled": true,
+    "sl_cart_upsell_heading": "Pairs well with a sunny afternoon",
     "page_text_color": "#2A231C",
-    "page_background_color": "#F8F1E3",
     "type_body_font": "figtree_n4",
     "type_subheading_font": "figtree_n6",
     "type_heading_font": "fraunces_n6",
@@ -57,6 +56,7 @@
     "type_line_height_h6": "display-normal",
     "type_letter_spacing_h6": "heading-loose",
     "type_case_h6": "uppercase",
+    "page_background_color": "#F8F1E3",
     "page_width": "normal",
     "page_transition_enabled": false,
     "transition_to_main_product": false,
@@ -140,15 +140,22 @@
     "variant_button_border_width": 1,
     "variant_button_radius": 12,
     "variant_button_width": "default-width-buttons",
-    "sl_variant_media_swap": false,
-    "sl_warm_shadows": true,
-    "sl_free_shipping_enabled": true,
-    "sl_free_shipping_threshold": 49,
-    "sl_free_shipping_progress_text": "You're [amount] away from free US shipping ☀️",
-    "sl_free_shipping_success_text": "You've unlocked free US shipping ☀️",
-    "sl_cart_upsell_enabled": true,
-    "sl_cart_upsell_heading": "Pairs well with a sunny afternoon",
-    "content_for_index": []
+    "content_for_index": [],
+    "blocks": {
+      "14060646107696862457": {
+        "type": "shopify://apps/judge-me-reviews/blocks/judgeme_core/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+        "disabled": false,
+        "settings": {}
+      }
+    },
+    "color_palette": {
+      "background": "#F8F1E3",
+      "foreground": "#2A231C",
+      "color1": "#7A4314",
+      "color2": "#F3D89A",
+      "color3": "#E5B33A",
+      "color4": "#FFFBF3"
+    }
   },
   "presets": {
     "Default": {
