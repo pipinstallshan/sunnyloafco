@@ -11,7 +11,7 @@
       </div>
       <div class="sl-faq__list">
         {%- for block in section.blocks -%}
-          <details class="sl-faq__item"{% if block.settings.open %} open{% endif %} {{ block.shopify_attributes }}>
+          <details class="sl-faq__item" name="sl-faq-{{ section.id }}"{% if block.settings.open %} open{% endif %} {{ block.shopify_attributes }}>
             <summary>
               <span>{{ block.settings.question }}</span>
               <span class="sl-faq__icon" aria-hidden="true"></span>
