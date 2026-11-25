@@ -1,3 +1,7 @@
+/*
+ * Custom contact page template for Sunny Loaf Co.
+ * Renders the sl-contact section.
+ */
 {
   "sections": {
     "contact": {
