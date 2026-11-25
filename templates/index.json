@@ -21,15 +21,22 @@
         "button_link": "shopify://collections/all",
         "button_label_2": "Our story",
         "button_link_2": "shopify://pages/about",
+        "feature_1": "Free US shipping over $49",
+        "feature_1_icon": "shipping",
+        "feature_2": "Easy 30-day returns",
+        "feature_2_icon": "returns",
+        "feature_3": "Ships from the US",
+        "feature_3_icon": "sun",
         "overlay_opacity": 40,
-        "height_desktop": 74,
-        "height_mobile": 82,
-        "content_alignment": "left",
-        "vertical_alignment": "bottom",
+        "show_glow": true,
         "focal_x": 70,
         "focal_y": 55,
         "focal_x_mobile": 65,
-        "focal_y_mobile": 50
+        "focal_y_mobile": 50,
+        "height_desktop": 74,
+        "height_mobile": 82,
+        "content_alignment": "left",
+        "vertical_alignment": "bottom"
       }
     },
     "benefits": {
@@ -90,7 +97,9 @@
           "settings": {
             "collection": "",
             "heading": "Window perches",
-            "subtitle": "For the sunniest seat in the house"
+            "subtitle": "For the sunniest seat in the house",
+            "show_count": false,
+            "link": ""
           }
         },
         "c2": {
@@ -98,7 +107,9 @@
           "settings": {
             "collection": "",
             "heading": "Cat beds",
-            "subtitle": "Soft landings for serious loafs"
+            "subtitle": "Soft landings for serious loafs",
+            "show_count": false,
+            "link": ""
           }
         },
         "c3": {
@@ -106,7 +117,9 @@
           "settings": {
             "collection": "",
             "heading": "Toys & play",
-            "subtitle": "Keep the afternoon interesting"
+            "subtitle": "Keep the afternoon interesting",
+            "show_count": false,
+            "link": ""
           }
         },
         "c4": {
@@ -114,7 +127,9 @@
           "settings": {
             "collection": "",
             "heading": "Home essentials",
-            "subtitle": "Everyday pieces for life with a cat"
+            "subtitle": "Everyday pieces for life with a cat",
+            "show_count": false,
+            "link": ""
           }
         }
       },
@@ -135,12 +150,17 @@
       "type": "sl-loaf-of-the-week",
       "settings": {
         "color_scheme": "accent",
+        "product": "",
         "eyebrow": "Loaf of the week",
         "badge_text": "Loaf of the week",
         "blurb": "The one we keep coming back to. A warm, sturdy spot that looks like it was always meant to live by your window.",
+        "feature_1": "Sized for real windowsills",
+        "feature_2": "Holds the biggest loafs with room to stretch",
+        "feature_3": "Warm, washable, and built to last",
         "button_label": "Add to cart",
         "show_link": true,
         "link_text": "See the full details",
+        "reassurance": "Free US shipping over $49 · Easy 30-day returns",
         "image_position": "left"
       }
     },
@@ -188,6 +208,7 @@
       ],
       "settings": {
         "color_scheme": "accent",
+        "heading": "",
         "padding_top": 40,
         "padding_bottom": 40
       }
@@ -250,8 +271,10 @@
         "eyebrow": "Join the sunny side",
         "heading": "Notes from the sunny window",
         "subhead": "The occasional email: new arrivals, sunny-spot tips, and the odd very good loaf. No spam, unsubscribe anytime.",
+        "placeholder": "you@example.com",
         "button_label": "Keep me posted",
-        "success_text": "You're on the list. See you on the sunny side ☀️"
+        "success_text": "You're on the list. See you on the sunny side ☀️",
+        "fineprint": "By subscribing you agree to receive marketing emails from Sunny Loaf Co."
       }
     },
     "faq": {
@@ -302,6 +325,46 @@
         "heading": "Questions, answered",
         "subhead": "Shipping, returns, sizing and cat safety. Edit any of these to match your real policies."
       }
+    },
+    "1795628909c6bc39a3": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_medals_YBqKzT": {
+          "type": "shopify://apps/judge-me-reviews/blocks/medals/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_medals_YBqKzT"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
     }
   },
   "order": [
@@ -312,6 +375,7 @@
     "trust",
     "testimonials",
     "email",
-    "faq"
+    "faq",
+    "1795628909c6bc39a3"
   ]
 }
