@@ -297,6 +297,14 @@
         "padding-block-end": 0
       }
     },
+    "sl_reviews": {
+      "type": "sl-reviews",
+      "settings": {
+        "color_scheme": "light",
+        "eyebrow": "Loved by cats & their humans",
+        "heading": "Customer reviews"
+      }
+    },
     "product_recommendations_qggXJq": {
       "type": "product-recommendations",
       "blocks": {
@@ -445,6 +453,7 @@
   },
   "order": [
     "main",
+    "sl_reviews",
     "product_recommendations_qggXJq",
     "sl_recently_viewed"
   ]
