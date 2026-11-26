@@ -1,9 +1,29 @@
 {%- liquid
   assign s = section.settings
-  assign on_media = false
-  if s.image != blank or s.mobile_image != blank or s.video != blank
-    assign on_media = true
+
+  assign split = false
+  if s.layout == 'split'
+    assign split = true
   endif
+
+  comment
+    Photo source: an uploaded image wins; otherwise a chosen product photo.
+  endcomment
+  assign hero_img = s.image
+  if hero_img == blank and s.product != blank
+    assign img_index = s.product_image | minus: 1
+    assign hero_img = s.product.images[img_index]
+    if hero_img == blank
+      assign hero_img = s.product.featured_image
+    endif
+  endif
+
+  assign on_media = false
+  unless split
+    if hero_img != blank or s.mobile_image != blank or s.video != blank
+      assign on_media = true
+    endif
+  endunless
 
   assign v_align = 'center'
   if s.vertical_alignment == 'top'
@@ -21,135 +41,177 @@
     assign h_align = 'flex-end'
     assign text_align = 'right'
   endif
+
+  assign hero_alt = shop.name
+  if hero_img.alt != blank
+    assign hero_alt = hero_img.alt
+  elsif s.product != blank
+    assign hero_alt = s.product.title
+  endif
 -%}
-<section
-  class="sl-hero sl-scheme--{{ s.color_scheme }}{% if on_media %} sl-hero--on-media{% endif %}"
-  style="
-    --sl-hero-height: {{ s.height_desktop }}vh;
-    --sl-hero-height-mobile: {{ s.height_mobile }}svh;
-    --sl-v-align: {{ v_align }};
-    --sl-v-align-mobile: {{ v_align }};
-    --sl-h-align: {{ h_align }};
-    --sl-text-align: {{ text_align }};
-    --sl-focal: {{ s.focal_x }}% {{ s.focal_y }}%;
-    --sl-focal-mobile: {{ s.focal_x_mobile }}% {{ s.focal_y_mobile }}%;
-    --sl-overlay: {{ s.overlay_opacity | divided_by: 100.0 }};
-  "
-  {{ section.shopify_attributes }}
->
-  {%- if on_media -%}
-    <div class="sl-hero__media{% if s.mobile_image != blank %} sl-hero__media--has-mobile{% endif %}">
-      {%- if s.video != blank -%}
-        {{
-          s.video
-          | video_tag: image_size: '1600x', loop: true, autoplay: true, muted: true, controls: false, playsinline: true
-        }}
-      {%- else -%}
-        {%- if s.image != blank -%}
-          {{
-            s.image
-            | image_url: width: 2400
-            | image_tag:
-              class: 'sl-hero__img--desktop',
-              loading: 'eager',
-              fetchpriority: 'high',
-              sizes: '100vw',
-              widths: '750, 1100, 1500, 1800, 2400',
-              alt: s.image.alt | default: shop.name
-          }}
-        {%- else -%}
-          <img
-            class="sl-hero__img--desktop"
-            src="{{ 'sl-hero-cat.jpg' | asset_url }}"
-            width="1140"
-            height="900"
-            alt="A tabby cat loafing in warm window light"
-            loading="eager"
-            fetchpriority="high"
-          >
-        {%- endif -%}
-        {%- if s.mobile_image != blank -%}
-          {{
-            s.mobile_image
-            | image_url: width: 1200
-            | image_tag:
-              class: 'sl-hero__img--mobile',
-              loading: 'eager',
-              fetchpriority: 'high',
-              sizes: '100vw',
-              widths: '600, 900, 1200',
-              alt: s.mobile_image.alt | default: shop.name
-          }}
-        {%- endif -%}
-      {%- endif -%}
-    </div>
-    {%- if s.overlay_opacity > 0 -%}
-      <div class="sl-hero__overlay"></div>
+
+{%- capture hero_content -%}
+  <div class="sl-hero__content">
+    {%- if s.eyebrow != blank -%}
+      <p class="sl-eyebrow sl-hero__eyebrow">{{ s.eyebrow }}</p>
     {%- endif -%}
-    <div class="sl-hero__scrim" aria-hidden="true"></div>
-  {%- endif -%}
+    {%- if s.heading != blank -%}
+      <h1 class="sl-heading sl-hero__heading">{{ s.heading }}</h1>
+    {%- endif -%}
+    {%- if s.tagline != blank -%}
+      <p class="sl-subheading sl-hero__tagline">{{ s.tagline }}</p>
+    {%- endif -%}
+    {%- if s.subhead != blank -%}
+      <p class="sl-subheading">{{ s.subhead }}</p>
+    {%- endif -%}
+    {%- if s.button_label != blank or s.button_label_2 != blank -%}
+      <div class="sl-buttons">
+        {%- if s.button_label != blank -%}
+          <a class="button" href="{{ s.button_link | default: '#' }}">{{- s.button_label -}}</a>
+        {%- endif -%}
+        {%- if s.button_label_2 != blank -%}
+          <a class="button-secondary" href="{{ s.button_link_2 | default: '#' }}">{{- s.button_label_2 -}}</a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
 
-  {%- if s.show_glow -%}
-    <span class="sl-hero__glow" aria-hidden="true"></span>
-  {%- endif -%}
+    {%- liquid
+      assign has_trust = false
+      if s.feature_1 != blank or s.feature_2 != blank or s.feature_3 != blank
+        assign has_trust = true
+      endif
+    -%}
+    {%- if has_trust -%}
+      <ul class="sl-hero__trust" role="list">
+        {%- if s.feature_1 != blank -%}
+          <li>{% render 'sl-icon', name: s.feature_1_icon %}<span>{{ s.feature_1 }}</span></li>
+        {%- endif -%}
+        {%- if s.feature_2 != blank -%}
+          <li>{% render 'sl-icon', name: s.feature_2_icon %}<span>{{ s.feature_2 }}</span></li>
+        {%- endif -%}
+        {%- if s.feature_3 != blank -%}
+          <li>{% render 'sl-icon', name: s.feature_3_icon %}<span>{{ s.feature_3 }}</span></li>
+        {%- endif -%}
+      </ul>
+    {%- endif -%}
+  </div>
+{%- endcapture -%}
 
-  <div class="sl-hero__inner sl-container">
-    <div class="sl-hero__content">
-      {%- if s.eyebrow != blank -%}
-        <p class="sl-eyebrow sl-hero__eyebrow">{{ s.eyebrow }}</p>
-      {%- endif -%}
-      {%- if s.heading != blank -%}
-        <h1 class="sl-heading sl-hero__heading">{{ s.heading }}</h1>
-      {%- endif -%}
-      {%- if s.tagline != blank -%}
-        <p class="sl-subheading sl-hero__tagline">{{ s.tagline }}</p>
-      {%- endif -%}
-      {%- if s.subhead != blank -%}
-        <p class="sl-subheading">{{ s.subhead }}</p>
-      {%- endif -%}
-      {%- if s.button_label != blank or s.button_label_2 != blank -%}
-        <div class="sl-buttons">
-          {%- if s.button_label != blank -%}
-            <a
-              class="button"
-              href="{{ s.button_link | default: '#' }}"
+{%- if split -%}
+  <section
+    class="sl-hero sl-hero--split sl-scheme--{{ s.color_scheme }}"
+    style="--sl-text-align: {{ text_align }}; --sl-h-align: {{ h_align }};"
+    {{ section.shopify_attributes }}
+  >
+    {%- if s.show_glow -%}
+      <span class="sl-hero__glow" aria-hidden="true"></span>
+    {%- endif -%}
+    <div class="sl-container sl-hero__split">
+      {{ hero_content }}
+      <div class="sl-hero__visual">
+        <div class="sl-hero__frame">
+          {%- if hero_img != blank -%}
+            {{
+              hero_img
+              | image_url: width: 1400
+              | image_tag:
+                loading: 'eager',
+                fetchpriority: 'high',
+                sizes: '(min-width: 900px) 48vw, 100vw',
+                widths: '500, 750, 1000, 1400',
+                alt: hero_alt
+            }}
+          {%- else -%}
+            <img
+              src="{{ 'sl-hero-cat.jpg' | asset_url }}"
+              width="1140"
+              height="900"
+              alt="A tabby cat loafing in warm window light"
+              loading="eager"
+              fetchpriority="high"
             >
-              {{- s.button_label -}}
-            </a>
-          {%- endif -%}
-          {%- if s.button_label_2 != blank -%}
-            <a
-              class="button-secondary"
-              href="{{ s.button_link_2 | default: '#' }}"
-            >
-              {{- s.button_label_2 -}}
-            </a>
           {%- endif -%}
         </div>
-      {%- endif -%}
-
-      {%- liquid
-        assign has_trust = false
-        if s.feature_1 != blank or s.feature_2 != blank or s.feature_3 != blank
-          assign has_trust = true
-        endif
-      -%}
-      {%- if has_trust -%}
-        <ul class="sl-hero__trust" role="list">
-          {%- if s.feature_1 != blank -%}
-            <li>{% render 'sl-icon', name: s.feature_1_icon %}<span>{{ s.feature_1 }}</span></li>
-          {%- endif -%}
-          {%- if s.feature_2 != blank -%}
-            <li>{% render 'sl-icon', name: s.feature_2_icon %}<span>{{ s.feature_2 }}</span></li>
-          {%- endif -%}
-          {%- if s.feature_3 != blank -%}
-            <li>{% render 'sl-icon', name: s.feature_3_icon %}<span>{{ s.feature_3 }}</span></li>
-          {%- endif -%}
-        </ul>
-      {%- endif -%}
+      </div>
     </div>
-  </div>
-</section>
+  </section>
+{%- else -%}
+  <section
+    class="sl-hero sl-scheme--{{ s.color_scheme }}{% if on_media %} sl-hero--on-media{% endif %}"
+    style="
+      --sl-hero-height: {{ s.height_desktop }}vh;
+      --sl-hero-height-mobile: {{ s.height_mobile }}svh;
+      --sl-v-align: {{ v_align }};
+      --sl-v-align-mobile: {{ v_align }};
+      --sl-h-align: {{ h_align }};
+      --sl-text-align: {{ text_align }};
+      --sl-focal: {{ s.focal_x }}% {{ s.focal_y }}%;
+      --sl-focal-mobile: {{ s.focal_x_mobile }}% {{ s.focal_y_mobile }}%;
+      --sl-overlay: {{ s.overlay_opacity | divided_by: 100.0 }};
+    "
+    {{ section.shopify_attributes }}
+  >
+    {%- if on_media -%}
+      <div class="sl-hero__media{% if s.mobile_image != blank %} sl-hero__media--has-mobile{% endif %}">
+        {%- if s.video != blank -%}
+          {{
+            s.video
+            | video_tag: image_size: '1600x', loop: true, autoplay: true, muted: true, controls: false, playsinline: true
+          }}
+        {%- else -%}
+          {%- if hero_img != blank -%}
+            {{
+              hero_img
+              | image_url: width: 2400
+              | image_tag:
+                class: 'sl-hero__img--desktop',
+                loading: 'eager',
+                fetchpriority: 'high',
+                sizes: '100vw',
+                widths: '750, 1100, 1500, 1800, 2400',
+                alt: hero_alt
+            }}
+          {%- else -%}
+            <img
+              class="sl-hero__img--desktop"
+              src="{{ 'sl-hero-cat.jpg' | asset_url }}"
+              width="1140"
+              height="900"
+              alt="A tabby cat loafing in warm window light"
+              loading="eager"
+              fetchpriority="high"
+            >
+          {%- endif -%}
+          {%- if s.mobile_image != blank -%}
+            {{
+              s.mobile_image
+              | image_url: width: 1200
+              | image_tag:
+                class: 'sl-hero__img--mobile',
+                loading: 'eager',
+                fetchpriority: 'high',
+                sizes: '100vw',
+                widths: '600, 900, 1200',
+                alt: s.mobile_image.alt | default: shop.name
+            }}
+          {%- endif -%}
+        {%- endif -%}
+      </div>
+      {%- if s.overlay_opacity > 0 -%}
+        <div class="sl-hero__overlay"></div>
+      {%- endif -%}
+      <div class="sl-hero__scrim" aria-hidden="true"></div>
+    {%- endif -%}
+
+    {%- if s.show_glow -%}
+      <span class="sl-hero__glow" aria-hidden="true"></span>
+    {%- endif -%}
+
+    <div class="sl-hero__inner sl-container">
+      {{ hero_content }}
+    </div>
+  </section>
+{%- endif -%}
 
 {% schema %}
 {
@@ -162,13 +224,24 @@
       "type": "select",
       "id": "color_scheme",
       "label": "Color scheme",
-      "info": "Used when no background media is set, and behind any overlay.",
+      "info": "Background for the split layout, or behind the photo overlay.",
       "options": [
         { "value": "light", "label": "Light (Warm Milk)" },
         { "value": "accent", "label": "Accent (Wheatfield)" },
         { "value": "dark", "label": "Dark (Charcoal)" }
       ],
       "default": "dark"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "info": "Split works best with square product photos.",
+      "options": [
+        { "value": "overlay", "label": "Text over photo" },
+        { "value": "split", "label": "Split: text and framed photo" }
+      ],
+      "default": "overlay"
     },
     { "type": "header", "content": "Content" },
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Sunny home goods for cats" },
@@ -183,7 +256,7 @@
       "type": "textarea",
       "id": "subhead",
       "label": "Supporting text",
-      "default": "Window perches, beds, and sunny-home essentials, chosen with care and shipped from the US."
+      "default": "Cat trees and beds chosen with care, for cats who follow the sun around the house."
     },
     { "type": "text", "id": "button_label", "label": "Primary button", "default": "Shop the collection" },
     { "type": "url", "id": "button_link", "label": "Primary button link" },
@@ -220,14 +293,16 @@
         { "value": "cat", "label": "Cat" }, { "value": "window", "label": "Window" }, { "value": "star", "label": "Star" }
       ]
     },
-    { "type": "header", "content": "Background media" },
+    { "type": "header", "content": "Photo" },
     {
       "type": "paragraph",
-      "content": "Leave image and video empty to use the default hero placeholder until you add real lifestyle photos."
+      "content": "Upload an image, or pick a product to use one of its photos until you have your own lifestyle shots."
     },
-    { "type": "image_picker", "id": "image", "label": "Desktop image" },
-    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image", "info": "Optional. Falls back to the desktop image." },
-    { "type": "video", "id": "video", "label": "Background video", "info": "Overrides the image when set. Plays muted and looped." },
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "product", "id": "product", "label": "Or use a product photo" },
+    { "type": "range", "id": "product_image", "label": "Product photo number", "min": 1, "max": 10, "step": 1, "default": 1 },
+    { "type": "image_picker", "id": "mobile_image", "label": "Mobile image", "info": "Text-over-photo layout only. Optional." },
+    { "type": "video", "id": "video", "label": "Background video", "info": "Text-over-photo layout only. Overrides the image. Plays muted and looped." },
     {
       "type": "range",
       "id": "overlay_opacity",
@@ -248,7 +323,7 @@
     { "type": "header", "content": "Height" },
     { "type": "range", "id": "height_desktop", "label": "Desktop height", "min": 40, "max": 100, "step": 2, "unit": "vh", "default": 72 },
     { "type": "range", "id": "height_mobile", "label": "Mobile height", "min": 50, "max": 100, "step": 2, "unit": "vh", "default": 80 },
-    { "type": "header", "content": "Layout" },
+    { "type": "header", "content": "Alignment" },
     {
       "type": "select",
       "id": "content_alignment",

@@ -2,7 +2,30 @@
   assign s = section.settings
   assign quotes = section.blocks | where: 'type', 'quote'
   assign photos = section.blocks | where: 'type', 'photo'
+
+  comment
+    Placeholders and empty photo tiles are shown in the theme editor only.
+    On the live store the whole section stays hidden until there is real content.
+  endcomment
+  assign editing = request.design_mode
+  assign real_quotes = 0
+  for q in quotes
+    unless q.settings.is_placeholder
+      assign real_quotes = real_quotes | plus: 1
+    endunless
+  endfor
+  assign show_quotes = false
+  if real_quotes > 0 or editing
+    assign show_quotes = true
+  endif
+  assign show_ugc = false
+  if s.ugc_enabled
+    if photos.size > 0 or editing
+      assign show_ugc = true
+    endif
+  endif
 -%}
+{%- if show_quotes or show_ugc -%}
 <section class="sl-section sl-scheme--{{ s.color_scheme }}" {{ section.shopify_attributes }}>
   <div class="sl-container">
     {%- if s.eyebrow != blank or s.heading != blank -%}
@@ -13,9 +36,10 @@
       </div>
     {%- endif -%}
 
-    {%- if quotes.size > 0 -%}
+    {%- if show_quotes and quotes.size > 0 -%}
       <div class="sl-testimonials__grid">
         {%- for block in quotes -%}
+          {%- if block.settings.is_placeholder and editing == false -%}{%- continue -%}{%- endif -%}
           <figure class="sl-quote sl-card sl-card--shadow" {{ block.shopify_attributes }}>
             {%- if block.settings.is_placeholder -%}
               <span class="sl-placeholder-note">Placeholder &middot; edit or remove</span>
@@ -40,7 +64,7 @@
       </div>
     {%- endif -%}
 
-    {%- if s.ugc_enabled -%}
+    {%- if show_ugc -%}
       <div class="sl-ugc">
         <div class="sl-ugc__head">
           <h3>{{ s.ugc_heading }}</h3>
@@ -82,6 +106,7 @@
     {%- endif -%}
   </div>
 </section>
+{%- endif -%}
 
 {% schema %}
 {

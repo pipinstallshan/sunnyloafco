@@ -317,6 +317,61 @@
   max-width: 640px;
 }
 
+/* Split hero: text beside a framed product photo (photo first on phones) */
+.sl-hero--split {
+  display: block;
+  min-height: 0;
+  padding-block: clamp(28px, 6vw, 88px);
+}
+
+.sl-hero__split {
+  position: relative;
+  display: grid;
+  gap: clamp(24px, 4vw, 64px);
+  align-items: center;
+  text-align: var(--sl-text-align, left);
+}
+
+.sl-hero__visual {
+  order: -1;
+}
+
+.sl-hero__frame {
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: var(--sl-radius-lg);
+  box-shadow: var(--sl-shadow-lift);
+  background: rgb(var(--sl-milk-rgb) / 0.08);
+}
+
+.sl-hero__frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media screen and (min-width: 900px) {
+  .sl-hero__split {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  }
+
+  .sl-hero__visual {
+    order: 0;
+  }
+}
+
+@media screen and (max-width: 899px) {
+  .sl-hero--split .sl-hero__heading {
+    font-size: clamp(2.125rem, 1.4rem + 4vw, 3rem);
+  }
+
+  .sl-hero__frame {
+    max-height: 62svh;
+    aspect-ratio: 4 / 3.4;
+  }
+}
+
 .sl-hero--on-media {
   color: var(--sl-warm-white);
 }
@@ -1230,6 +1285,37 @@
 
 .sl-badges__item .sl-icon {
   color: var(--sl-crust);
+}
+
+/* ---------- Product page: shipping & delivery line ---------- */
+.sl-delivery {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.sl-delivery__line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: 0.9375rem;
+  line-height: 1.35;
+  --sl-icon-size: 18px;
+}
+
+.sl-delivery__line .sl-icon {
+  color: var(--sl-crust);
+  flex: none;
+}
+
+.sl-delivery__line--offer {
+  font-weight: 600;
+}
+
+.sl-scheme--dark .sl-delivery__line .sl-icon {
+  color: var(--sl-butter);
 }
 
 /* ---------- Product page: rating slot ---------- */

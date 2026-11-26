@@ -16,11 +16,11 @@
         "eyebrow": "Sunny home goods for cats",
         "heading": "A warmer spot for the cat who loafs",
         "tagline": "Made for cats who loaf in the sun.",
-        "subhead": "Window perches, beds, and sunny-home essentials, chosen with care and shipped from the US.",
-        "button_label": "Shop the collection",
-        "button_link": "shopify://collections/all",
-        "button_label_2": "Our story",
-        "button_link_2": "shopify://pages/about",
+        "subhead": "A floor-to-ceiling cactus tree and a raised plush sofa bed, for cats who follow the sun around the house.",
+        "button_label": "Shop cat trees",
+        "button_link": "shopify://collections/cat-trees",
+        "button_label_2": "Shop cat beds",
+        "button_link_2": "shopify://collections/cat-beds",
         "feature_1": "Free US shipping over $49",
         "feature_1_icon": "shipping",
         "feature_2": "Easy 30-day returns",
@@ -36,7 +36,10 @@
         "height_desktop": 74,
         "height_mobile": 82,
         "content_alignment": "left",
-        "vertical_alignment": "bottom"
+        "vertical_alignment": "bottom",
+        "layout": "split",
+        "product": "sunny-climb-cactus-cat-tree-floor-to-ceiling",
+        "product_image": 3
       }
     },
     "benefits": {
@@ -46,32 +49,32 @@
           "type": "benefit",
           "settings": {
             "icon": "sun",
-            "title": "Follows the sun",
-            "text": "Sized for real windowsills, so the warmest patch of the day is always within reach."
+            "title": "Room to climb",
+            "text": "The cactus tree runs floor to ceiling, adjusting from 225 to 255 cm, with a hammock and condo on the way up."
           }
         },
         "b2": {
           "type": "benefit",
           "settings": {
-            "icon": "window",
-            "title": "A front-row seat",
-            "text": "Perches that sit steady on the glass for hours of bird TV and people-watching."
+            "icon": "paw",
+            "title": "A seat off the floor",
+            "text": "The sofa bed sits on wooden legs, just high enough to feel like a perch of their own."
           }
         },
         "b3": {
           "type": "benefit",
           "settings": {
-            "icon": "paw",
-            "title": "Made for loafing",
-            "text": "Soft, tuck-in surfaces that invite paws-under, chin-down, zero-plans napping."
+            "icon": "cat",
+            "title": "Washable where it counts",
+            "text": "The sofa bed's shaggy cover lifts off, so the favourite spot stays fresh."
           }
         },
         "b4": {
           "type": "benefit",
           "settings": {
-            "icon": "cat",
-            "title": "Looks right at home",
-            "text": "Calm, warm tones chosen to suit your room, not to shout from across it."
+            "icon": "window",
+            "title": "Easy to say yes",
+            "text": "Free US shipping over $49, tracking on every order, and 30-day returns."
           }
         }
       },
@@ -95,9 +98,9 @@
         "c1": {
           "type": "card",
           "settings": {
-            "collection": "",
-            "heading": "Window perches",
-            "subtitle": "For the sunniest seat in the house",
+            "collection": "cat-trees",
+            "heading": "Cat trees",
+            "subtitle": "Climb up to the sunniest spot",
             "show_count": false,
             "link": ""
           }
@@ -105,29 +108,9 @@
         "c2": {
           "type": "card",
           "settings": {
-            "collection": "",
+            "collection": "cat-beds",
             "heading": "Cat beds",
             "subtitle": "Soft landings for serious loafs",
-            "show_count": false,
-            "link": ""
-          }
-        },
-        "c3": {
-          "type": "card",
-          "settings": {
-            "collection": "",
-            "heading": "Toys & play",
-            "subtitle": "Keep the afternoon interesting",
-            "show_count": false,
-            "link": ""
-          }
-        },
-        "c4": {
-          "type": "card",
-          "settings": {
-            "collection": "",
-            "heading": "Home essentials",
-            "subtitle": "Everyday pieces for life with a cat",
             "show_count": false,
             "link": ""
           }
@@ -135,28 +118,26 @@
       },
       "block_order": [
         "c1",
-        "c2",
-        "c3",
-        "c4"
+        "c2"
       ],
       "settings": {
         "color_scheme": "light",
         "eyebrow": "Shop by spot",
         "heading": "Find their next favorite place",
-        "subhead": "The first card sits large, the rest fill in around it. Link each to a collection in the theme editor."
+        "subhead": "Somewhere to climb, somewhere to loaf. Pick their spot."
       }
     },
     "loaf_of_week": {
       "type": "sl-loaf-of-the-week",
       "settings": {
         "color_scheme": "accent",
-        "product": "",
+        "product": "sunny-lounge-raised-cat-sofa-bed",
         "eyebrow": "Loaf of the week",
         "badge_text": "Loaf of the week",
-        "blurb": "The one we keep coming back to. A warm, sturdy spot that looks like it was always meant to live by your window.",
-        "feature_1": "Sized for real windowsills",
-        "feature_2": "Holds the biggest loafs with room to stretch",
-        "feature_3": "Warm, washable, and built to last",
+        "blurb": "A raised, shaggy sofa for cats who like their naps a little off the floor.",
+        "feature_1": "Wooden legs lift it just off the floor",
+        "feature_2": "Shaggy cover lifts off to wash",
+        "feature_3": "About 54.5 x 44 x 27 cm, sized for the room",
         "button_label": "Add to cart",
         "show_link": true,
         "link_text": "See the full details",
@@ -215,43 +196,8 @@
     },
     "testimonials": {
       "type": "sl-testimonials",
-      "blocks": {
-        "q1": {
-          "type": "quote",
-          "settings": {
-            "is_placeholder": true,
-            "rating": 5,
-            "quote": "She found the sunny perch within an hour and has barely left it since.",
-            "author": "Placeholder name",
-            "location": "Portland, OR"
-          }
-        },
-        "q2": {
-          "type": "quote",
-          "settings": {
-            "is_placeholder": true,
-            "rating": 5,
-            "quote": "Sturdier than it looks and it actually fits our narrow sill. The cat approves.",
-            "author": "Placeholder name",
-            "location": "Austin, TX"
-          }
-        },
-        "q3": {
-          "type": "quote",
-          "settings": {
-            "is_placeholder": true,
-            "rating": 5,
-            "quote": "Shipped quickly and looks right at home in the living room. A proper loafing spot.",
-            "author": "Placeholder name",
-            "location": "Columbus, OH"
-          }
-        }
-      },
-      "block_order": [
-        "q1",
-        "q2",
-        "q3"
-      ],
+      "blocks": {},
+      "block_order": [],
       "settings": {
         "color_scheme": "light",
         "eyebrow": "From the sunny side",
@@ -284,7 +230,7 @@
           "type": "qa",
           "settings": {
             "question": "How long does shipping take?",
-            "answer": "<p>Orders ship from the US. Please allow 1&ndash;3 business days to process, then typically 5&ndash;10 business days for delivery. You'll get tracking by email when it leaves the warehouse. Edit this to match your real times.</p>",
+            "answer": "<p>Orders usually process in 1 to 3 business days, then delivery typically takes about 5 to 10 business days. Shipping is free in the US on orders over $49, and you'll get tracking by email when it ships.</p>",
             "open": true
           }
         },
@@ -292,15 +238,15 @@
           "type": "qa",
           "settings": {
             "question": "What's your return policy?",
-            "answer": "<p>Returns are accepted within 30 days of delivery, in the condition you received it. If anything arrives damaged or wrong, email hello@sunnyloafco.com and we'll make it right. Edit this to match your real policy.</p>",
+            "answer": "<p>Returns are accepted within 30 days of delivery, in the condition you received it. If anything arrives damaged or wrong, email hello@sunnyloafco.com and we'll make it right.</p>",
             "open": false
           }
         },
         "f3": {
           "type": "qa",
           "settings": {
-            "question": "Will this fit my windowsill and my cat?",
-            "answer": "<p>Every product page lists Width, Height, Length, Weight capacity and Material. Measure your sill and check your cat's weight against the capacity before ordering. Not sure? Email us the measurements and we'll help.</p>",
+            "question": "Will it fit my space and my cat?",
+            "answer": "<p>Each product page lists its size. The cactus tree adjusts from 225 to 255 cm (about 7.4 to 8.4 ft), so measure your ceiling first. The sofa bed is about 54.5 x 44 x 27 cm. Not sure? Email us your measurements and we'll help.</p>",
             "open": false
           }
         },
@@ -308,7 +254,7 @@
           "type": "qa",
           "settings": {
             "question": "Is it safe for my cat?",
-            "answer": "<p>We choose sturdy, stable pieces and list materials honestly. Always follow the setup instructions, check weight limits, and supervise the first few uses. Edit this with any product-specific safety notes.</p>",
+            "answer": "<p>We choose sturdy, stable pieces and describe them honestly. Follow the setup instructions, make sure the cactus tree's tension pole is snug against the ceiling, and supervise the first few uses.</p>",
             "open": false
           }
         }
@@ -323,7 +269,7 @@
         "color_scheme": "light",
         "eyebrow": "Good to know",
         "heading": "Questions, answered",
-        "subhead": "Shipping, returns, sizing and cat safety. Edit any of these to match your real policies."
+        "subhead": "Shipping, returns, sizing and cat safety."
       }
     },
     "1795628909c6bc39a3": {

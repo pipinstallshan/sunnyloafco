@@ -5,6 +5,8 @@
   assign form_id = 'LoafOfWeek-' | append: section.id
   assign submit_id = form_id | append: '-submit'
 -%}
+{%- comment -%} No product chosen: show the setup note in the editor only, nothing to shoppers. {%- endcomment -%}
+{%- if product != blank or request.design_mode -%}
 <section class="sl-section sl-scheme--{{ s.color_scheme }}" {{ section.shopify_attributes }}>
   <div class="sl-container">
     <div class="sl-lotw__grid{% if s.image_position == 'right' %} sl-lotw--image-right{% endif %}">
@@ -108,6 +110,7 @@
     </div>
   </div>
 </section>
+{%- endif -%}
 
 {%- if product != blank -%}
   <script src="{{ 'product-form.js' | asset_url }}" type="module"></script>

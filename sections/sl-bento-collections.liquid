@@ -28,6 +28,9 @@
           if img == blank and coll.featured_image != blank
             assign img = coll.featured_image
           endif
+          if img == blank and coll != blank and coll.products.first.featured_image != blank
+            assign img = coll.products.first.featured_image
+          endif
         -%}
         <a
           class="sl-bento__item"
