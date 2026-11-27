@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Product detail preview</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/sunnyloaf.css">
+<style>
+ :root{--font-heading--family:'Fraunces',serif;--font-body--family:'Figtree',sans-serif;--font-subheading--family:'Figtree',sans-serif;--page-width:1200px;--page-margin:24px;--color-border:var(--sl-line)}
+ *{box-sizing:border-box}body{margin:0;background:var(--sl-milk);color:var(--sl-charcoal);font-family:var(--font-body--family)}
+ h1,h2,h3{font-family:var(--font-heading--family);font-weight:600}
+ .wrap{max-width:1120px;margin:0 auto;padding:40px 24px;display:grid;gap:48px;align-items:start;grid-template-columns:1fr}
+ @media(min-width:900px){.wrap{grid-template-columns:1fr 1fr}}
+ .media{aspect-ratio:1;border-radius:var(--sl-radius-lg);overflow:hidden;background:var(--sl-wheat)}
+ .media img{width:100%;height:100%;object-fit:cover;display:block}
+ .col{display:flex;flex-direction:column;gap:20px}
+ .ptitle{margin:0;font-size:clamp(1.8rem,1.2rem+1.6vw,2.4rem);line-height:1.08}
+ .price{display:flex;align-items:baseline;gap:10px;margin:0}
+ .price .now{font-size:1.5rem;font-weight:600}
+ .price s{opacity:.55}
+ .save{display:inline-block;padding:3px 10px;border-radius:999px;background:var(--sl-butter);color:var(--sl-crust);font-size:.8rem;font-weight:600}
+ .rule{height:1px;background:var(--sl-line);border:0;margin:0}
+ .vlabel{font-size:.8125rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;opacity:.72;margin:0 0 8px}
+ .vbtns{display:flex;gap:8px;flex-wrap:wrap}
+ .vbtn{padding:9px 18px;border-radius:10px;border:1.5px solid var(--sl-line);background:var(--sl-warm-white);font-weight:500;cursor:pointer}
+ .vbtn.on{border-color:var(--sl-crust);background:var(--sl-crust);color:var(--sl-milk)}
+ .button{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;background:var(--sl-crust);color:var(--sl-milk);border-radius:12px;font-weight:600;text-decoration:none;padding:0 28px;min-height:54px;border:none;font-family:var(--font-body--family);cursor:pointer;font-size:1.05rem}
+</style></head>
+<body class="sl-warm-shadows">
+<div class="wrap">
+  <div class="media"><img src="../../assets/sl-hero-cat.jpg" alt="Sunny Sill Window Perch"></div>
+  <div class="col">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <h1 class="ptitle">Sunny Sill Window Perch</h1>
+      <div class="sl-rating-slot">
+        <span class="sl-stars" style="--sl-rating:96%" role="img" aria-label="Rated 4.8 out of 5">
+          <span class="sl-stars__track" aria-hidden="true"><svg class="sl-stars__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.98 6.09 20.34l1.13-6.57L2.45 9.12l6.6-.96z"/></svg><svg class="sl-stars__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.98 6.09 20.34l1.13-6.57L2.45 9.12l6.6-.96z"/></svg><svg class="sl-stars__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.98 6.09 20.34l1.13-6.57L2.45 9.12l6.6-.96z"/></svg><svg class="sl-stars__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.98 6.09 20.34l1.13-6.57L2.45 9.12l6.6-.96z"/></svg><svg class="sl-stars__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.98 6.09 20.34l1.13-6.57L2.45 9.12l6.6-.96z"/></svg></span>
+          <span class="sl-stars__fill" aria-hidden="true"><svg class="sl-stars__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.98 6.09 20.34l1.13-6.57L2.45 9.12l6.6-.96z"/></svg><svg class="sl-stars__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.98 6.09 20.34l1.13-6.57L2.45 9.12l6.6-.96z"/></svg><svg class="sl-stars__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.98 6.09 20.34l1.13-6.57L2.45 9.12l6.6-.96z"/></svg><svg class="sl-stars__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.98 6.09 20.34l1.13-6.57L2.45 9.12l6.6-.96z"/></svg><svg class="sl-stars__star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.2l2.95 5.98 6.6.96-4.77 4.65 1.13 6.57L12 17.98 6.09 20.34l1.13-6.57L2.45 9.12l6.6-.96z"/></svg></span>
+        </span>
+        <span class="sl-rating-slot__meta"><strong>4.8</strong> <span>(126 reviews)</span></span>
+      </div>
+      <p class="price"><span class="now">$39.00</span> <s>$49.00</s> <span class="save">Save $10.00</span></p>
+    </div>
+    <hr class="rule">
+    <div>
+      <p class="vlabel">Size</p>
+      <div class="vbtns"><button class="vbtn on">Standard</button><button class="vbtn">Wide</button></div>
+    </div>
+    <div class="sl-specs">
+      <p class="sl-specs__title">Dimensions</p>
+      <dl class="sl-specs__list">
+        <div class="sl-specs__item"><dt>Width</dt><dd>22 in</dd></div>
+        <div class="sl-specs__item"><dt>Height</dt><dd>3 in</dd></div>
+        <div class="sl-specs__item"><dt>Holds up to</dt><dd>40 lb</dd></div>
+        <div class="sl-specs__item"><dt>Material</dt><dd>Oak &amp; plush</dd></div>
+      </dl>
+    </div>
+    <a class="button" href="#"><span class="sl-icon" style="width:18px;height:18px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16l-1.4 9.5a2 2 0 0 1-2 1.7H7.4a2 2 0 0 1-2-1.7L4 6zM4 6 3.2 3.3H1.5M9 20h.01M16 20h.01"/></svg></span>Add to cart</a>
+    <ul class="sl-badges" style="--sl-columns:2">
+      <li class="sl-badges__item"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M2.5 6.5h10v9h-10zM12.5 9.5h4l3 3v3h-7z"/><circle cx="6" cy="16.5" r="1.6"/><circle cx="16" cy="16.5" r="1.6"/></svg></span><span>Ships from the US with tracking</span></li>
+      <li class="sl-badges__item"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 9A8 8 0 1 1 4 13"/><path d="M3.5 4.5V9H8"/></svg></span><span>30-day returns</span></li>
+      <li class="sl-badges__item"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.8 19 5.5v5.3c0 4.6-3 8.1-7 9.4-4-1.3-7-4.8-7-9.4V5.5z"/><path d="M8.8 12l2.1 2.1 4.3-4.3" stroke-linecap="round"/></svg></span><span>Secure checkout</span></li>
+      <li class="sl-badges__item"><span class="sl-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M4 5.5h16v11H8l-4 3.2z"/><path d="M8.5 10.5h.01M12 10.5h.01M15.5 10.5h.01" stroke-width="2" stroke-linecap="round"/></svg></span><span>Friendly email support</span></li>
+    </ul>
+    <div class="sl-faq__list">
+      <details class="sl-faq__item" open><summary><span>Features</span><span class="sl-faq__icon" aria-hidden="true"></span></summary><div class="sl-faq__answer sl-rte rte"><ul><li>Sized for real windowsills</li><li>Holds the biggest loafs with room to stretch</li><li>Warm, washable, and built to last</li></ul></div></details>
+      <details class="sl-faq__item"><summary><span>Details &amp; care</span><span class="sl-faq__icon" aria-hidden="true"></span></summary><div class="sl-faq__answer sl-rte rte"><p>Wipe clean with a damp cloth. Check weight limits before use.</p></div></details>
+      <details class="sl-faq__item"><summary><span>Shipping &amp; returns</span><span class="sl-faq__icon" aria-hidden="true"></span></summary><div class="sl-faq__answer sl-rte rte"><p>Ships from the US with tracking. 30-day returns in original condition.</p></div></details>
+    </div>
+  </div>
+</div>
+</body></html>

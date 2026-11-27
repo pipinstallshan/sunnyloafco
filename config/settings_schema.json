@@ -57,6 +57,85 @@
     ]
   },
   {
+    "name": "Sunny Loaf",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product gallery"
+      },
+      {
+        "type": "checkbox",
+        "id": "sl_variant_media_swap",
+        "label": "Move the selected variant's image to the front of the gallery",
+        "info": "Off (recommended): the gallery keeps its order and scrolls to the variant's image instead of replacing the featured image.",
+        "default": false
+      },
+      {
+        "type": "header",
+        "content": "Look and feel"
+      },
+      {
+        "type": "checkbox",
+        "id": "sl_warm_shadows",
+        "label": "Soft warm shadows on cards and buttons",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Free shipping progress bar"
+      },
+      {
+        "type": "checkbox",
+        "id": "sl_free_shipping_enabled",
+        "label": "Show free shipping progress in the cart",
+        "default": true
+      },
+      {
+        "type": "number",
+        "id": "sl_free_shipping_threshold",
+        "label": "Free shipping threshold",
+        "info": "In your store currency (whole units, e.g. 49 for $49). Match this to your real shipping rate in Settings > Shipping and delivery.",
+        "default": 49
+      },
+      {
+        "type": "text",
+        "id": "sl_free_shipping_progress_text",
+        "label": "Message while below threshold",
+        "info": "Use [amount] where the remaining amount should appear.",
+        "default": "You're [amount] away from free US shipping ☀️"
+      },
+      {
+        "type": "text",
+        "id": "sl_free_shipping_success_text",
+        "label": "Message once unlocked",
+        "default": "You've unlocked free US shipping ☀️"
+      },
+      {
+        "type": "header",
+        "content": "Cart drawer upsell"
+      },
+      {
+        "type": "checkbox",
+        "id": "sl_cart_upsell_enabled",
+        "label": "Show an upsell in the cart drawer",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "sl_cart_upsell_heading",
+        "label": "Upsell heading",
+        "default": "Pairs well with a sunny afternoon"
+      },
+      {
+        "type": "product_list",
+        "id": "sl_cart_upsell_products",
+        "label": "Upsell products",
+        "info": "Leave empty to hide the upsell.",
+        "limit": 4
+      }
+    ]
+  },
+  {
     "name": "t:names.colors",
     "settings": [
       {

@@ -1,0 +1,55 @@
+{%- doc -%}
+  Collapsible Features / Details / Shipping & Returns tabs for the product page.
+{%- enddoc -%}
+{%- liquid
+  assign bs = block.settings
+  assign p = closest.product
+
+  assign features = bs.features
+  if bs.features_use_description and p.description != blank
+    assign features = p.description
+  endif
+-%}
+<div class="sl-faq__list spacing-style" style="{% render 'spacing-style', settings: bs %}" {{ block.shopify_attributes }}>
+  {%- if features != blank -%}
+    <details class="sl-faq__item"{% if bs.open_first %} open{% endif %}>
+      <summary><span>{{ bs.features_title }}</span><span class="sl-faq__icon" aria-hidden="true"></span></summary>
+      <div class="sl-faq__answer sl-rte rte">{{ features }}</div>
+    </details>
+  {%- endif -%}
+  {%- if bs.details != blank -%}
+    <details class="sl-faq__item">
+      <summary><span>{{ bs.details_title }}</span><span class="sl-faq__icon" aria-hidden="true"></span></summary>
+      <div class="sl-faq__answer sl-rte rte">{{ bs.details }}</div>
+    </details>
+  {%- endif -%}
+  {%- if bs.shipping != blank -%}
+    <details class="sl-faq__item">
+      <summary><span>{{ bs.shipping_title }}</span><span class="sl-faq__icon" aria-hidden="true"></span></summary>
+      <div class="sl-faq__answer sl-rte rte">{{ bs.shipping }}</div>
+    </details>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "Collapsible tabs",
+  "settings": [
+    { "type": "checkbox", "id": "open_first", "label": "Open first tab by default", "default": false },
+    { "type": "header", "content": "Features" },
+    { "type": "checkbox", "id": "features_use_description", "label": "Use the product description", "default": true },
+    { "type": "text", "id": "features_title", "label": "Title", "default": "Features" },
+    { "type": "richtext", "id": "features", "label": "Content (used when not using the description)", "default": "<ul><li>Honest materials, described as they really are</li><li>Sized for real homes and real cats</li><li>Chosen to look good in the room</li></ul>" },
+    { "type": "header", "content": "Details" },
+    { "type": "text", "id": "details_title", "label": "Title", "default": "Details & care" },
+    { "type": "richtext", "id": "details", "label": "Content", "default": "<p>Wipe clean with a damp cloth. Check weight limits before use and supervise the first few visits. Edit this with care instructions for this product.</p>" },
+    { "type": "header", "content": "Shipping & returns" },
+    { "type": "text", "id": "shipping_title", "label": "Title", "default": "Shipping & returns" },
+    { "type": "richtext", "id": "shipping", "label": "Content", "default": "<p>Ships from the US with tracking. Please allow 1&ndash;3 business days to process and typically 5&ndash;10 business days for delivery. 30-day returns in original condition. Edit this to match your real policies.</p>" },
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding-block-start", "label": "Top", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 8 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 }
+  ],
+  "presets": [{ "name": "Collapsible tabs", "category": "Sunny Loaf" }]
+}
+{% endschema %}

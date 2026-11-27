@@ -1,92 +1,114 @@
-# Horizon
+# Sunny Loaf Co. — custom Shopify theme
 
-[Getting started](#getting-started) |
-[Staying up to date with Horizon changes](#staying-up-to-date-with-horizon-changes) |
-[Developer tools](#developer-tools) |
-[Contributing](#contributing) |
-[License](#license)
+A premium, mobile-first, conversion-focused theme for **Sunny Loaf Co.** (sunnyloafco.com), a US store selling cat products (window perches, beds, toys, home essentials) to American cat owners. Most traffic arrives from Meta (Instagram/Facebook) ads on mobile, so the theme is designed mobile-first.
 
-Horizon is the flagship of a new generation of first party Shopify themes. It incorporates the latest Liquid Storefronts features, including [theme blocks](https://shopify.dev/docs/storefronts/themes/architecture/blocks/theme-blocks/quick-start?framework=liquid).
+It is built on Shopify's open-source **[Horizon](https://github.com/Shopify/horizon)** theme (Theme Blocks architecture) and restyled to the free **Tinker** look: clean product grids, bento-style collection cards, warm cards, and a sticky cart. Horizon's license notice is kept in [`LICENSE.md`](LICENSE.md); the upstream Horizon README is preserved at [`docs/HORIZON-UPSTREAM.md`](docs/HORIZON-UPSTREAM.md).
 
-- **Web-native in its purest form:** Themes run on the [evergreen web](https://www.w3.org/2001/tag/doc/evergreen-web/). We leverage the latest web browsers to their fullest, while maintaining support for the older ones through progressive enhancement—not polyfills.
-- **Lean, fast, and reliable:** Functionality and design defaults to "no" until it meets this requirement. Code ships on quality. Themes must be built with purpose. They shouldn't support each and every feature in Shopify.
-- **Server-rendered:** HTML must be rendered by Shopify servers using Liquid. Business logic and platform primitives such as translations and money formatting don't belong on the client. Async and on-demand rendering of parts of the page is OK, but we do it sparingly as a progressive enhancement.
-- **Functional, not pixel-perfect:** The Web doesn't require each page to be rendered pixel-perfect by each browser engine. Using semantic markup, progressive enhancement, and clever design, we ensure that themes remain functional regardless of the browser.
+> **Brand rule reminder:** no bread/bakery/toast/oven/crumbs/dough/wheat imagery or copy anywhere — a "loaf" here is a cat with its paws tucked under. The plural is **loafs**, never "loaves". See `brand-kit.md` / `brand-voice.md` in the handoff for the full brand.
 
-## Getting started
+---
 
-We recommend using the Skeleton Theme as a starting point for a theme development project. [Learn more on Shopify.dev](https://shopify.dev/themes/getting-started/create).
+## How the repo connects to Shopify
 
-To create a new theme project based on Horizon:
+- **Repo:** `pipinstallshan/sunnyloafco` (private).
+- **Work branch:** `cursor/sunnyloaf-theme-2328`, connected to the store via **Online Store → Themes → Add theme → Connect from GitHub**. Every push to this branch syncs to the connected theme, so only push working Liquid/JSON.
+- `main` holds the base theme; this work lands via a PR from the work branch.
+- The theme stays **unpublished** until the owner reviews it. The store is still password-protected, so visitors see the password page (see below).
 
-```sh
-git clone https://github.com/Shopify/horizon.git
-```
+### Preview without publishing
 
-Install the [Shopify CLI](https://shopify.dev/docs/storefronts/themes/tools/cli) to connect your local project to a Shopify store. Learn about the [theme developer tools](https://shopify.dev/docs/storefronts/themes/tools) available, and the suggested [developer tools](#developer-tools) below.
+- In Shopify admin: **Online Store → Themes →** the connected "Sunny Loaf" theme **→ Preview** (eye icon). This never publishes.
+- Locally with the Shopify CLI (needs store access): `shopify theme dev --store your-store.myshopify.com`, then open the printed localhost URL. First run opens a browser login.
+- A static design preview of the key pages (no Shopify needed) lives in [`docs/preview/`](docs/preview/) — open the `.html` files in a browser. Rendered screenshots are in [`docs/screenshots/`](docs/screenshots/).
 
-Please note that the `main` branch may include code for features not yet released. You may encounter Liquid API properties that are not publicly documented, but will be when the feature is officially rolled out.
+---
 
-### Shopify Theme Store development
+## Where to set the main things (theme editor)
 
-If you're building a theme for the Shopify Theme Store, then do not use Horizon as a starting point. Themes based on, derived from, or incorporating Horizon are not eligible for submission to to the Shopify Theme Store. Use the [Skeleton Theme](https://github.com/Shopify/skeleton-theme) instead.
+Open **Online Store → Themes → Customize**.
 
-## Staying up to date with Horizon changes
+| What | Where |
+|---|---|
+| **Logo** | Theme settings → Logo and favicon → *Logo*. If left empty, the header falls back to the bundled `lockup-horizontal.png` automatically. |
+| **Favicon** | Theme settings → Logo and favicon → *Favicon*. If empty, falls back to `profile-110.png`. |
+| **Colors** | Theme settings → Colors (the palette) and the per-section **Color scheme** picker (Light / Accent / Dark). Defaults are already the brand palette. |
+| **Fonts** | Theme settings → Typography → Fraunces (headings) + Figtree (body). Already set. |
+| **Announcement bar** | Header → Announcement. Default: *Free US shipping on orders over $49 ☀️*. |
+| **Free-shipping threshold** | Theme settings → **Sunny Loaf** → *Free shipping threshold* (default `49`). Also update the real rate in **Settings → Shipping and delivery**. |
+| **Variant image behavior** | Theme settings → **Sunny Loaf** → *Move the selected variant's image to the front* (default **off** = keep gallery order, scroll to the variant's image). |
+| **Cart upsell** | Theme settings → **Sunny Loaf** → *Upsell products* (leave empty to hide). |
+| **Footer contact / socials** | Footer section: email `hello@sunnyloafco.com`, Instagram `@sunnyloafco`, Facebook *Sunny Loaf Co.* |
 
-Say you're building a new theme off Horizon but you still want to be able to pull in the latest changes, you can add a remote `upstream` pointing to this Horizon repository.
+Logo and favicon are normally uploaded in the editor; the theme ships sensible bundled fallbacks so nothing looks broken before then.
 
-1. Navigate to your local theme folder.
-2. Verify the list of remotes and validate that you have both an `origin` and `upstream`:
+---
 
-```sh
-git remote -v
-```
+## Custom sections (category "Sunny Loaf" in the editor)
 
-3. If you don't see an `upstream`, you can add one that points to Shopify's Horizon repository:
+| Section | File | What it does |
+|---|---|---|
+| **Sunny hero** | `sections/sl-hero.liquid` | Image or video background, eyebrow, headline, tagline, subhead, up to two CTAs. Desktop + mobile focal-point and height controls, overlay. Falls back to the bundled hero placeholder. |
+| **Why cats love it** | `sections/sl-benefits.liquid` | 1–4 benefit tiles with inline cat/sun/window/paw icons. |
+| **Bento collections** | `sections/sl-bento-collections.liquid` | Featured collection cards in a bento grid (first card large), Tinker look. |
+| **Loaf of the week** | `sections/sl-loaf-of-the-week.liquid` | One featured product: large image, witty blurb, price, working Add to cart. |
+| **Trust & shipping strip** | `sections/sl-trust.liquid` | 1–4 editable trust items (shipping, returns, secure, support) with icons. |
+| **Testimonials & UGC** | `sections/sl-testimonials.liquid` | Placeholder testimonials (clearly marked as placeholders in the editor) + an Instagram/UGC photo grid slot. |
+| **Email signup** | `sections/sl-email-signup.liquid` | "Join the sunny side" capture via Shopify's customer form. |
+| **FAQ accordion** | `sections/sl-faq.liquid` | Collapsible Q&A (shipping, returns, sizing, cat safety). |
+| **Recently viewed** | `sections/sl-recently-viewed.liquid` | Client-side recently-viewed products (localStorage), fetched via the Section Rendering API. |
+| **Opening soon** | `sections/sl-password.liquid` | Branded password-page content: stacked logo, tagline, email capture, Instagram link, sun glow. |
+| **404 content** | `sections/sl-404.liquid` | Witty cat 404 ("This page wandered off to find a sun patch."), search box, shop links. |
+| **About / what is a loaf** | `sections/sl-about.liquid` | Explains the cat meaning of "loaf" (never bakery). |
 
-```sh
-git remote add upstream https://github.com/Shopify/horizon.git
-```
+## Custom product-page blocks (category "Sunny Loaf")
 
-4. Pull in the latest Horizon changes into your repository:
+| Block | File | What it does |
+|---|---|---|
+| **Dimensions / spec strip** | `blocks/sl-spec-strip.liquid` | Reads product metafields and hides when empty (see below). |
+| **Trust badges** | `blocks/sl-trust-badges.liquid` | Editable badges under the buy button. |
+| **Star rating slot** | `blocks/sl-rating.liquid` | Review-app badge target (Judge.me compatible) under the title; optional manual rating from metafields. |
+| **Collapsible tabs** | `blocks/sl-product-tabs.liquid` | Features / Details & care / Shipping & returns accordions. |
 
-```sh
-git fetch upstream
-git pull upstream main
-```
+Shared styles live in `assets/sunnyloaf.css`; brand icons in `snippets/sl-icon.liquid`; the free-shipping bar + upsell in `snippets/sl-cart-extras.liquid`; the gallery scroll-to-variant enhancement in `assets/sl-variant-gallery.js`.
 
-## Developer tools
+### Product gallery & sticky cart (built on Horizon)
 
-There are a number of really useful tools that the Shopify Themes team uses during development. Horizon is already set up to work with these tools.
+- The mobile gallery swipes **one image per swipe** (`scroll-snap-stop: always`) with dots/thumbnails.
+- The **sticky add-to-cart bar** is Horizon's, enabled by default on the product template.
+- Recommended products use Horizon's product-recommendations section; recently viewed is the custom section above.
 
-### Shopify CLI
+---
 
-[Shopify CLI](https://shopify.dev/docs/storefronts/themes/tools/cli) helps you build Shopify themes faster and is used to automate and enhance your local development workflow. It comes bundled with a suite of commands for developing Shopify themes—everything from working with themes on a Shopify store (e.g. creating, publishing, deleting themes) or launching a development server for local theme development.
+## Metafields the spec strip reads
 
-You can follow this [quick start guide for theme developers](https://shopify.dev/docs/themes/tools/cli) to get started.
+Create these under **Settings → Custom data → Products → Add definition**. Use **namespace and key** exactly as below (type: *Single line text*, one value each). Put the value with its unit, e.g. `22 in`, `40 lb`.
 
-### Theme Check
+| Field | Namespace | Key | Type |
+|---|---|---|---|
+| Width | `specs` | `width` | Single line text |
+| Height | `specs` | `height` | Single line text |
+| Length | `specs` | `length` | Single line text |
+| Weight capacity | `specs` | `weight_capacity` | Single line text |
+| Material | `specs` | `material` | Single line text |
 
-We recommend using [Theme Check](https://github.com/shopify/theme-check) as a way to validate and lint your Shopify themes.
+The spec strip shows only the fields that have a value and hides entirely when all are empty (so products without dimensions, like toys, stay clean). Cat trees/perches are the hero products, so fill these in for them first.
 
-We've added Theme Check to Horizon's [list of VS Code extensions](/.vscode/extensions.json) so if you're using Visual Studio Code as your code editor of choice, you'll be prompted to install the [Theme Check VS Code](https://marketplace.visualstudio.com/items?itemName=Shopify.theme-check-vscode) extension upon opening VS Code after you've forked and cloned Horizon.
+**Optional** (star rating slot manual fallback), namespace `reviews`: `rating` (Rating or decimal) and `rating_count` (Integer). Normally a review app (Judge.me) fills the rating badge instead.
 
-You can also run it from a terminal with the following Shopify CLI command:
+---
 
-```bash
-shopify theme check
-```
+## Quality / status
 
-You can follow the [theme check documentation](https://shopify.dev/docs/storefronts/themes/tools/theme-check) for more details.
+- `shopify theme check` → **0 errors**. The remaining warnings are all in unmodified upstream Horizon files (`sections/header.liquid` settings count, `snippets/divider.liquid` doc params, `snippets/product-media-gallery-content.liquid` complexity) and are left untouched to stay mergeable with Horizon.
+- All JSON templates and `settings_schema.json` validate.
+- Tested at 390px (mobile) and 1440px (desktop) for homepage, product, collection, cart drawer, password and 404 — see `docs/screenshots/`.
 
-#### Shopify/theme-check-action
+## Left for the owner
 
-Horizon runs [Theme Check](#Theme-Check) on every commit via [Shopify/theme-check-action](https://github.com/Shopify/theme-check-action).
-
-## Contributing
-
-We are not accepting contributions to Horizon at this time.
-
-## License
-
-Copyright (c) 2025-present Shopify Inc. See [LICENSE](/LICENSE.md) for further details.
+- Upload real **logo/favicon** and real **lifestyle product photos** (the hero/bento/loaf-of-week currently use bundled placeholders or collection images).
+- Create collections and link them in the **Bento collections** section; pick the **Loaf of the week** product.
+- Create product **metafields** (above) and fill them on cat trees/perches.
+- Install **Judge.me** when real reviews exist, then add its app block in the product template and confirm the rating slot populates. No fake reviews until then.
+- Create an **About page** in admin and assign it the `page.about` template; a page handle `about` matches the header/footer "Our story" links.
+- Replace placeholder testimonials with real customer words before launch.
+- Set the real **free-shipping rate** in Settings → Shipping to match the $49 threshold, and review shipping/returns copy (editable, not hard-coded).

@@ -9,274 +9,319 @@
  */
 {
   "sections": {
-    "hero_jVaWmY": {
-      "type": "hero",
+    "hero": {
+      "type": "sl-hero",
+      "settings": {
+        "color_scheme": "dark",
+        "eyebrow": "Sunny home goods for cats",
+        "heading": "A warmer spot for the cat who loafs",
+        "tagline": "Made for cats who loaf in the sun.",
+        "subhead": "A floor-to-ceiling cactus tree and a raised plush sofa bed, for cats who follow the sun around the house.",
+        "button_label": "Shop cat trees",
+        "button_link": "shopify://collections/cat-trees",
+        "button_label_2": "Shop cat beds",
+        "button_link_2": "shopify://collections/cat-beds",
+        "feature_1": "Free US shipping over $49",
+        "feature_1_icon": "shipping",
+        "feature_2": "Easy 30-day returns",
+        "feature_2_icon": "returns",
+        "feature_3": "Ships from the US",
+        "feature_3_icon": "sun",
+        "overlay_opacity": 40,
+        "show_glow": true,
+        "focal_x": 70,
+        "focal_y": 55,
+        "focal_x_mobile": 65,
+        "focal_y_mobile": 50,
+        "height_desktop": 74,
+        "height_mobile": 82,
+        "content_alignment": "left",
+        "vertical_alignment": "bottom",
+        "layout": "split",
+        "product": "sunny-climb-cactus-cat-tree-floor-to-ceiling",
+        "product_image": 3
+      }
+    },
+    "benefits": {
+      "type": "sl-benefits",
       "blocks": {
-        "text_YLPk4p": {
-          "type": "text",
-          "name": "t:names.heading",
+        "b1": {
+          "type": "benefit",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
-            "width": "fit-content",
-            "max_width": "normal",
-            "alignment": "left",
-            "type_preset": "h2",
-            "font": "var(--font-body--family)",
-            "font_size": "1rem",
-            "line_height": "normal",
-            "letter_spacing": "normal",
-            "case": "none",
-            "wrap": "pretty",
-            "text_color": "{{ settings.color_palette.background }}",
-            "background": false,
-            "background_color": "#00000026",
-            "corner_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {}
+            "icon": "sun",
+            "title": "Room to climb",
+            "text": "The cactus tree runs floor to ceiling, adjusting from 225 to 255 cm, with a hammock and condo on the way up."
+          }
         },
-        "button_H9gpTf": {
-          "type": "button",
-          "name": "t:names.button",
+        "b2": {
+          "type": "benefit",
           "settings": {
-            "label": "Shop all",
-            "link": "shopify://collections/all",
-            "open_in_new_tab": false,
-            "style_class": "button-custom",
-            "custom_button_background": "rgba(0, 0, 0, 0)",
-            "custom_button_text": "{{ settings.color_palette.background }}",
-            "custom_button_border": "{{ settings.color_palette.background }}",
-            "width": "fit-content",
-            "custom_width": 100,
-            "width_mobile": "fit-content",
-            "custom_width_mobile": 100
-          },
-          "blocks": {}
+            "icon": "paw",
+            "title": "A seat off the floor",
+            "text": "The sofa bed sits on wooden legs, just high enough to feel like a perch of their own."
+          }
+        },
+        "b3": {
+          "type": "benefit",
+          "settings": {
+            "icon": "cat",
+            "title": "Washable where it counts",
+            "text": "The sofa bed's shaggy cover lifts off, so the favourite spot stays fresh."
+          }
+        },
+        "b4": {
+          "type": "benefit",
+          "settings": {
+            "icon": "window",
+            "title": "Easy to say yes",
+            "text": "Free US shipping over $49, tracking on every order, and 30-day returns."
+          }
         }
       },
       "block_order": [
-        "text_YLPk4p",
-        "button_H9gpTf"
+        "b1",
+        "b2",
+        "b3",
+        "b4"
       ],
-      "name": "t:names.hero",
       "settings": {
-        "media_type_1": "image",
-        "media_type_2": "image",
-        "link": "",
-        "open_in_new_tab": false,
-        "content_direction": "column",
-        "vertical_on_mobile": true,
-        "horizontal_alignment": "space-between",
-        "vertical_alignment": "flex-end",
-        "align_baseline": true,
-        "horizontal_alignment_flex_direction_column": "center",
-        "vertical_alignment_flex_direction_column": "flex-end",
-        "gap": 24,
-        "section_width": "page-width",
-        "section_height": "medium",
-        "section_height_custom": 50,
-        "toggle_overlay": true,
-        "overlay_color": "#12121266",
-        "overlay_style": "solid",
-        "gradient_direction": "to bottom",
-        "blurred_reflection": false,
-        "reflection_opacity": 75,
-        "padding-block-start": 100,
-        "padding-block-end": 72
+        "color_scheme": "light",
+        "eyebrow": "Why cats love it",
+        "heading": "Built around the way cats actually live",
+        "subhead": "Sunny windows, soft landings, and a spot that is unmistakably theirs.",
+        "center_heading": true
       }
     },
-    "product_list_fa6P9H": {
-      "type": "product-list",
+    "collections": {
+      "type": "sl-bento-collections",
       "blocks": {
-        "static-header": {
-          "type": "_product-list-content",
-          "name": "t:names.header",
-          "static": true,
+        "c1": {
+          "type": "card",
           "settings": {
-            "content_direction": "row",
-            "vertical_on_mobile": false,
-            "horizontal_alignment": "space-between",
-            "vertical_alignment": "flex-end",
-            "align_baseline": true,
-            "horizontal_alignment_flex_direction_column": "flex-start",
-            "vertical_alignment_flex_direction_column": "center",
-            "gap": 12,
-            "width": "fill",
-            "custom_width": 100,
-            "width_mobile": "fill",
-            "custom_width_mobile": 100,
-            "height": "fit",
-            "custom_height": 100,
-            "background_media": "none",
-            "video_position": "cover",
-            "background_image_position": "cover",
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_list_text_YFtzcL": {
-              "type": "_product-list-text",
-              "name": "t:names.collection_title",
-              "settings": {
-                "text": "<h3>{{ closest.collection.title }}</h3>",
-                "width": "fit-content",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "h4",
-                "font": "var(--font-body--family)",
-                "font_size": "",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_list_button_MWeP9V": {
-              "type": "_product-list-button",
-              "name": "t:names.product_list_button",
-              "settings": {
-                "label": "View all",
-                "open_in_new_tab": false,
-                "style_class": "button-unstyled",
-                "width": "fit-content",
-                "custom_width": 100,
-                "width_mobile": "fit-content",
-                "custom_width_mobile": 100
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_list_text_YFtzcL",
-            "product_list_button_MWeP9V"
-          ]
+            "collection": "cat-trees",
+            "heading": "Cat trees",
+            "subtitle": "Climb up to the sunniest spot",
+            "show_count": false,
+            "link": ""
+          }
         },
-        "static-product-card": {
-          "type": "_product-card",
-          "name": "t:names.product_card",
-          "static": true,
+        "c2": {
+          "type": "card",
           "settings": {
-            "product_card_gap": 4,
-            "border": "none",
-            "border_width": 1,
-            "border_opacity": 100,
-            "border_radius": 0,
-            "padding-block-start": 0,
-            "padding-block-end": 0,
-            "padding-inline-start": 0,
-            "padding-inline-end": 0
-          },
-          "blocks": {
-            "product_card_gallery_677WP3": {
-              "type": "_product-card-gallery",
-              "name": "t:names.product_card_media",
-              "settings": {
-                "image_ratio": "adapt",
-                "border": "none",
-                "border_width": 1,
-                "border_opacity": 100,
-                "border_radius": 0,
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "product_title_YXxMTj": {
-              "type": "product-title",
-              "name": "t:names.product_title",
-              "settings": {
-                "width": "100%",
-                "max_width": "normal",
-                "alignment": "left",
-                "type_preset": "paragraph",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "wrap": "pretty",
-                "background": false,
-                "background_color": "#00000026",
-                "corner_radius": 0,
-                "padding-block-start": 4,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            },
-            "price_JQzVV4": {
-              "type": "price",
-              "name": "t:names.product_price",
-              "settings": {
-                "show_sale_price_first": true,
-                "show_installments": false,
-                "show_tax_info": false,
-                "type_preset": "h6",
-                "width": "100%",
-                "alignment": "left",
-                "font": "var(--font-body--family)",
-                "font_size": "1rem",
-                "line_height": "normal",
-                "letter_spacing": "normal",
-                "case": "none",
-                "padding-block-start": 0,
-                "padding-block-end": 0,
-                "padding-inline-start": 0,
-                "padding-inline-end": 0
-              },
-              "blocks": {}
-            }
-          },
-          "block_order": [
-            "product_card_gallery_677WP3",
-            "product_title_YXxMTj",
-            "price_JQzVV4"
-          ]
+            "collection": "cat-beds",
+            "heading": "Cat beds",
+            "subtitle": "Soft landings for serious loafs",
+            "show_count": false,
+            "link": ""
+          }
         }
       },
-      "name": "t:names.featured_collection",
+      "block_order": [
+        "c1",
+        "c2"
+      ],
       "settings": {
-        "collection": "all",
-        "layout_type": "grid",
-        "carousel_on_mobile": false,
-        "max_products": 8,
-        "columns": 4,
-        "mobile_columns": "2",
-        "mobile_card_size": "60cqw",
-        "columns_gap": 8,
-        "rows_gap": 24,
-        "icons_style": "arrow",
-        "icons_shape": "none",
-        "section_width": "page-width",
+        "color_scheme": "light",
+        "eyebrow": "Shop by spot",
+        "heading": "Find their next favorite place",
+        "subhead": "Somewhere to climb, somewhere to loaf. Pick their spot."
+      }
+    },
+    "loaf_of_week": {
+      "type": "sl-loaf-of-the-week",
+      "settings": {
+        "color_scheme": "accent",
+        "product": "sunny-lounge-raised-cat-sofa-bed",
+        "eyebrow": "Loaf of the week",
+        "badge_text": "Loaf of the week",
+        "blurb": "A raised, shaggy sofa for cats who like their naps a little off the floor.",
+        "feature_1": "Wooden legs lift it just off the floor",
+        "feature_2": "Shaggy cover lifts off to wash",
+        "feature_3": "About 54.5 x 44 x 27 cm, sized for the room",
+        "button_label": "Add to cart",
+        "show_link": true,
+        "link_text": "See the full details",
+        "reassurance": "Free US shipping over $49 · Easy 30-day returns",
+        "image_position": "left"
+      }
+    },
+    "trust": {
+      "type": "sl-trust",
+      "blocks": {
+        "t1": {
+          "type": "item",
+          "settings": {
+            "icon": "shipping",
+            "title": "Fast US shipping",
+            "text": "Tracked delivery on every order."
+          }
+        },
+        "t2": {
+          "type": "item",
+          "settings": {
+            "icon": "returns",
+            "title": "30-day returns",
+            "text": "Changed your mind? Send it back."
+          }
+        },
+        "t3": {
+          "type": "item",
+          "settings": {
+            "icon": "secure",
+            "title": "Secure checkout",
+            "text": "Encrypted, trusted payment."
+          }
+        },
+        "t4": {
+          "type": "item",
+          "settings": {
+            "icon": "support",
+            "title": "Friendly support",
+            "text": "Real replies within one business day."
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3",
+        "t4"
+      ],
+      "settings": {
+        "color_scheme": "accent",
+        "heading": "",
+        "padding_top": 40,
+        "padding_bottom": 40
+      }
+    },
+    "testimonials": {
+      "type": "sl-testimonials",
+      "blocks": {},
+      "block_order": [],
+      "settings": {
+        "color_scheme": "light",
+        "eyebrow": "From the sunny side",
+        "heading": "Loved by cats, chosen by cat people",
+        "subhead": "",
+        "ugc_enabled": true,
+        "ugc_heading": "Tag @sunnyloafco to be featured",
+        "ugc_link": "https://instagram.com/sunnyloafco",
+        "ugc_link_text": "Follow on Instagram"
+      }
+    },
+    "email": {
+      "type": "sl-email-signup",
+      "settings": {
+        "color_scheme": "dark",
+        "boxed": true,
+        "eyebrow": "Join the sunny side",
+        "heading": "Notes from the sunny window",
+        "subhead": "The occasional email: new arrivals, sunny-spot tips, and the odd very good loaf. No spam, unsubscribe anytime.",
+        "placeholder": "you@example.com",
+        "button_label": "Keep me posted",
+        "success_text": "You're on the list. See you on the sunny side ☀️",
+        "fineprint": "By subscribing you agree to receive marketing emails from Sunny Loaf Co."
+      }
+    },
+    "faq": {
+      "type": "sl-faq",
+      "blocks": {
+        "f1": {
+          "type": "qa",
+          "settings": {
+            "question": "How long does shipping take?",
+            "answer": "<p>Orders usually process in 1 to 3 business days, then delivery typically takes about 5 to 10 business days. Shipping is free in the US on orders over $49, and you'll get tracking by email when it ships.</p>",
+            "open": true
+          }
+        },
+        "f2": {
+          "type": "qa",
+          "settings": {
+            "question": "What's your return policy?",
+            "answer": "<p>Returns are accepted within 30 days of delivery, in the condition you received it. If anything arrives damaged or wrong, email hello@sunnyloafco.com and we'll make it right.</p>",
+            "open": false
+          }
+        },
+        "f3": {
+          "type": "qa",
+          "settings": {
+            "question": "Will it fit my space and my cat?",
+            "answer": "<p>Each product page lists its size. The cactus tree adjusts from 225 to 255 cm (about 7.4 to 8.4 ft), so measure your ceiling first. The sofa bed is about 54.5 x 44 x 27 cm. Not sure? Email us your measurements and we'll help.</p>",
+            "open": false
+          }
+        },
+        "f4": {
+          "type": "qa",
+          "settings": {
+            "question": "Is it safe for my cat?",
+            "answer": "<p>We choose sturdy, stable pieces and describe them honestly. Follow the setup instructions, make sure the cactus tree's tension pole is snug against the ceiling, and supervise the first few uses.</p>",
+            "open": false
+          }
+        }
+      },
+      "block_order": [
+        "f1",
+        "f2",
+        "f3",
+        "f4"
+      ],
+      "settings": {
+        "color_scheme": "light",
+        "eyebrow": "Good to know",
+        "heading": "Questions, answered",
+        "subhead": "Shipping, returns, sizing and cat safety."
+      }
+    },
+    "1795628909c6bc39a3": {
+      "type": "_blocks",
+      "blocks": {
+        "judge_me_reviews_medals_YBqKzT": {
+          "type": "shopify://apps/judge-me-reviews/blocks/medals/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "judge_me_reviews_medals_YBqKzT"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
         "horizontal_alignment": "flex-start",
-        "gap": 28,
-        "padding-block-start": 48,
-        "padding-block-end": 48
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "background_media": "none",
+        "background_color": "",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_color": "",
+        "border_radius": 0,
+        "padding-block-start": 0,
+        "padding-block-end": 0
       }
     }
   },
   "order": [
-    "hero_jVaWmY",
-    "product_list_fa6P9H"
+    "hero",
+    "benefits",
+    "collections",
+    "loaf_of_week",
+    "trust",
+    "testimonials",
+    "email",
+    "faq",
+    "1795628909c6bc39a3"
   ]
 }

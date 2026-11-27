@@ -1,0 +1,152 @@
+{%- liquid
+  assign s = section.settings
+-%}
+<div class="sl-contact sl-section sl-scheme--{{ s.color_scheme }}" style="--sl-pad-top: {{ s.padding_top }}px; --sl-pad-bottom: {{ s.padding_bottom }}px;">
+  {%- if s.show_glow -%}<span class="sl-contact__glow" aria-hidden="true"></span>{%- endif -%}
+  <div class="sl-container">
+    <div class="sl-section-head sl-section-head--center">
+      {%- if s.eyebrow != blank -%}<p class="sl-eyebrow">{{ s.eyebrow }}</p>{%- endif -%}
+      {%- if s.heading != blank -%}<h1 class="sl-heading sl-contact__heading">{{ s.heading }}</h1>{%- endif -%}
+      {%- if s.subheading != blank -%}<p class="sl-subheading">{{ s.subheading }}</p>{%- endif -%}
+    </div>
+
+    <div class="sl-contact__grid">
+      <aside class="sl-contact__aside">
+        {%- if s.email != blank -%}
+          <a class="sl-contact__method sl-card sl-card--shadow" href="mailto:{{ s.email }}">
+            <span class="sl-contact__method-icon">{% render 'sl-icon', name: 'email' %}</span>
+            <span class="sl-contact__method-body">
+              <span class="sl-contact__method-label">{{ s.email_label }}</span>
+              <span class="sl-contact__method-value">{{ s.email }}</span>
+            </span>
+          </a>
+        {%- endif -%}
+
+        {%- if s.response_title != blank -%}
+          <div class="sl-contact__method sl-card sl-card--shadow">
+            <span class="sl-contact__method-icon">{% render 'sl-icon', name: 'support' %}</span>
+            <span class="sl-contact__method-body">
+              <span class="sl-contact__method-label">{{ s.response_title }}</span>
+              <span class="sl-contact__method-value">{{ s.response_text }}</span>
+            </span>
+          </div>
+        {%- endif -%}
+
+        {%- if s.instagram_url != blank or s.facebook_url != blank -%}
+          <div class="sl-contact__method sl-card sl-card--shadow">
+            <span class="sl-contact__method-icon">{% render 'sl-icon', name: 'cat' %}</span>
+            <span class="sl-contact__method-body">
+              <span class="sl-contact__method-label">{{ s.social_label }}</span>
+              <span class="sl-contact__social">
+                {%- if s.instagram_url != blank -%}
+                  <a href="{{ s.instagram_url }}" target="_blank" rel="noopener" aria-label="Instagram">{% render 'sl-icon', name: 'instagram' %}</a>
+                {%- endif -%}
+                {%- if s.facebook_url != blank -%}
+                  <a href="{{ s.facebook_url }}" target="_blank" rel="noopener" aria-label="Facebook">{% render 'sl-icon', name: 'facebook' %}</a>
+                {%- endif -%}
+              </span>
+            </span>
+          </div>
+        {%- endif -%}
+
+        {%- if s.note != blank -%}
+          <p class="sl-contact__note">{{ s.note }}</p>
+        {%- endif -%}
+      </aside>
+
+      <div class="sl-contact__form-wrap sl-card sl-card--shadow">
+        {%- assign form_id = 'ContactForm' -%}
+        {%- form 'contact', id: form_id -%}
+          {%- if form.posted_successfully? -%}
+            <div class="sl-contact__success">
+              <span class="sl-contact__success-icon">{% render 'sl-icon', name: 'sun' %}</span>
+              <p class="sl-form-message">{{ s.success_text }}</p>
+            </div>
+          {%- else -%}
+            {%- if form.errors -%}
+              <p class="sl-form-message sl-form-message--error">{{ s.error_text }}</p>
+            {%- endif -%}
+            <div class="sl-contact__fields">
+              <div class="sl-field sl-field--half">
+                <label for="ContactName">{{ s.name_label }}</label>
+                <input class="sl-input" type="text" id="ContactName" name="contact[Name]" value="{% if form.name %}{{ form.name }}{% elsif customer %}{{ customer.name }}{% endif %}" autocomplete="name" required>
+              </div>
+              <div class="sl-field sl-field--half">
+                <label for="ContactEmail">{{ s.email_field_label }}</label>
+                <input class="sl-input{% if form.errors contains 'email' %} sl-input--error{% endif %}" type="email" id="ContactEmail" name="contact[email]" value="{% if form.email %}{{ form.email }}{% elsif customer %}{{ customer.email }}{% endif %}" autocomplete="email" autocorrect="off" autocapitalize="off" required>
+              </div>
+              {%- if s.show_phone -%}
+                <div class="sl-field sl-field--half">
+                  <label for="ContactPhone">{{ s.phone_label }}</label>
+                  <input class="sl-input" type="tel" id="ContactPhone" name="contact[Phone number]" value="{% if form.phone %}{{ form.phone }}{% endif %}" autocomplete="tel">
+                </div>
+              {%- endif -%}
+              {%- if s.show_order -%}
+                <div class="sl-field sl-field--half">
+                  <label for="ContactOrder">{{ s.order_label }}</label>
+                  <input class="sl-input" type="text" id="ContactOrder" name="contact[Order number]">
+                </div>
+              {%- endif -%}
+              <div class="sl-field sl-field--full">
+                <label for="ContactMessage">{{ s.message_label }}</label>
+                <textarea class="sl-input sl-textarea" id="ContactMessage" name="contact[body]" rows="6" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+              </div>
+            </div>
+            <button type="submit" class="button sl-contact__submit">{{ s.button_label }}</button>
+            <p class="sl-contact__privacy">{{ s.privacy_text }}</p>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "light", "label": "Light (Warm Milk)" },
+        { "value": "accent", "label": "Accent (Wheatfield)" },
+        { "value": "dark", "label": "Dark (Charcoal)" }
+      ],
+      "default": "light"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "We're here to help" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Get in touch" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Questions about your order, a product, or your cat's new favorite sunny spot? Send us a note and a real human will get back to you." },
+    { "type": "checkbox", "id": "show_glow", "label": "Sun-flare glow", "info": "A soft, warm light behind the page — the Sunny Loaf motif.", "default": true },
+    { "type": "header", "content": "Contact details" },
+    { "type": "text", "id": "email_label", "label": "Email label", "default": "Email us" },
+    { "type": "text", "id": "email", "label": "Email address", "default": "hello@sunnyloafco.com" },
+    { "type": "text", "id": "response_title", "label": "Response title", "default": "Fast, friendly replies" },
+    { "type": "text", "id": "response_text", "label": "Response text", "default": "We reply within 1 business day, Mon–Fri." },
+    { "type": "text", "id": "social_label", "label": "Social label", "default": "Say hi on social" },
+    { "type": "url", "id": "instagram_url", "label": "Instagram link" },
+    { "type": "url", "id": "facebook_url", "label": "Facebook link" },
+    { "type": "textarea", "id": "note", "label": "Reassurance note", "default": "Prefer email? Reach us any time at hello@sunnyloafco.com — we read every message." },
+    { "type": "header", "content": "Form fields" },
+    { "type": "text", "id": "name_label", "label": "Name label", "default": "Name" },
+    { "type": "text", "id": "email_field_label", "label": "Email field label", "default": "Email" },
+    { "type": "checkbox", "id": "show_phone", "label": "Show phone field", "default": false },
+    { "type": "text", "id": "phone_label", "label": "Phone label", "default": "Phone (optional)" },
+    { "type": "checkbox", "id": "show_order", "label": "Show order-number field", "default": true },
+    { "type": "text", "id": "order_label", "label": "Order-number label", "default": "Order number (optional)" },
+    { "type": "text", "id": "message_label", "label": "Message label", "default": "How can we help?" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Send message" },
+    { "type": "text", "id": "privacy_text", "label": "Privacy line", "default": "We'll only use your details to reply. No spam, ever." },
+    { "type": "header", "content": "Messages" },
+    { "type": "text", "id": "success_text", "label": "Success message", "default": "Thanks for reaching out! We'll be in touch within one business day ☀️" },
+    { "type": "text", "id": "error_text", "label": "Error message", "default": "Something didn't go through — please check the highlighted fields and try again." },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 84 }
+  ],
+  "presets": [{ "name": "Contact", "category": "Sunny Loaf" }]
+}
+{% endschema %}

@@ -1,0 +1,80 @@
+{%- doc -%}
+  Shipping offer + honest delivery window, for under the product price.
+  The window is processing days + transit days (business days, weekends skipped),
+  computed in the shopper's browser. Without JS it falls back to a plain range.
+{%- enddoc -%}
+{%- liquid
+  assign bs = block.settings
+  assign early = bs.processing_min | plus: bs.transit_min
+  assign late = bs.processing_max | plus: bs.transit_max
+  if late < early
+    assign late = early
+  endif
+-%}
+<div class="sl-delivery spacing-style" style="{% render 'spacing-style', settings: bs %}" {{ block.shopify_attributes }}>
+  {%- if bs.shipping_text != blank -%}
+    <p class="sl-delivery__line sl-delivery__line--offer">
+      {% render 'sl-icon', name: 'shipping' %}<span>{{ bs.shipping_text }}</span>
+    </p>
+  {%- endif -%}
+  {%- if bs.show_window -%}
+    <p class="sl-delivery__line">
+      {% render 'sl-icon', name: 'sun' %}
+      <span
+        class="sl-delivery__window"
+        data-early="{{ early }}"
+        data-late="{{ late }}"
+        data-prefix="{{ bs.window_prefix | escape }}"
+      >
+        {{ bs.window_prefix }} {{ early }}&ndash;{{ late }} business days
+      </span>
+    </p>
+  {%- endif -%}
+</div>
+
+<script>
+  (() => {
+    const addBusinessDays = (date, days) => {
+      const d = new Date(date);
+      let added = 0;
+      while (added < days) {
+        d.setDate(d.getDate() + 1);
+        const day = d.getDay();
+        if (day !== 0 && day !== 6) added += 1;
+      }
+      return d;
+    };
+    const fmt = new Intl.DateTimeFormat(undefined, { month: 'short', day: 'numeric' });
+    document.querySelectorAll('.sl-delivery__window:not([data-ready])').forEach((el) => {
+      el.dataset.ready = '1';
+      const early = parseInt(el.dataset.early, 10);
+      const late = parseInt(el.dataset.late, 10);
+      if (Number.isNaN(early) || Number.isNaN(late)) return;
+      const now = new Date();
+      el.textContent = `${el.dataset.prefix} ${fmt.format(addBusinessDays(now, early))} – ${fmt.format(addBusinessDays(now, late))}`;
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Shipping & delivery",
+  "settings": [
+    { "type": "text", "id": "shipping_text", "label": "Shipping line", "default": "Free US shipping on orders over $49" },
+    { "type": "checkbox", "id": "show_window", "label": "Show estimated delivery dates", "default": true },
+    { "type": "text", "id": "window_prefix", "label": "Delivery text", "default": "Arrives about" },
+    {
+      "type": "paragraph",
+      "content": "Dates are business days from today: processing + delivery. Use honest ranges that match your real times."
+    },
+    { "type": "range", "id": "processing_min", "label": "Processing days (fastest)", "min": 0, "max": 10, "step": 1, "default": 1 },
+    { "type": "range", "id": "processing_max", "label": "Processing days (slowest)", "min": 0, "max": 10, "step": 1, "default": 3 },
+    { "type": "range", "id": "transit_min", "label": "Delivery days (fastest)", "min": 1, "max": 30, "step": 1, "default": 5 },
+    { "type": "range", "id": "transit_max", "label": "Delivery days (slowest)", "min": 1, "max": 30, "step": 1, "default": 10 },
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding-block-start", "label": "Top", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 4 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom", "min": 0, "max": 40, "step": 2, "unit": "px", "default": 0 }
+  ],
+  "presets": [{ "name": "Shipping & delivery", "category": "Sunny Loaf" }]
+}
+{% endschema %}

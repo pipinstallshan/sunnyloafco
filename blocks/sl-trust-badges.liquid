@@ -1,0 +1,65 @@
+{%- doc -%}
+  Editable trust badges, intended under the buy button on the product page.
+{%- enddoc -%}
+{%- liquid
+  assign bs = block.settings
+-%}
+<ul
+  class="sl-badges spacing-style"
+  style="--sl-columns: {{ bs.columns }}; {% render 'spacing-style', settings: bs %}"
+  {{ block.shopify_attributes }}
+>
+  {%- assign badges = bs.badge_1 | append: '||' | append: bs.badge_2 | append: '||' | append: bs.badge_3 | append: '||' | append: bs.badge_4 | split: '||' -%}
+  {%- assign icons = bs.icon_1 | append: '||' | append: bs.icon_2 | append: '||' | append: bs.icon_3 | append: '||' | append: bs.icon_4 | split: '||' -%}
+  {%- for badge in badges -%}
+    {%- assign label = badge | strip -%}
+    {%- if label != '' -%}
+      <li class="sl-badges__item">
+        {%- assign ic = icons[forloop.index0] | strip -%}
+        {%- if ic != '' and ic != 'none' -%}{% render 'sl-icon', name: ic %}{%- endif -%}
+        <span>{{ label }}</span>
+      </li>
+    {%- endif -%}
+  {%- endfor -%}
+</ul>
+
+{% schema %}
+{
+  "name": "Trust badges",
+  "settings": [
+    { "type": "range", "id": "columns", "label": "Columns", "min": 1, "max": 3, "step": 1, "default": 2 },
+    { "type": "header", "content": "Badge 1" },
+    { "type": "select", "id": "icon_1", "label": "Icon", "options": [
+      { "value": "shipping", "label": "Shipping" }, { "value": "returns", "label": "Returns" },
+      { "value": "secure", "label": "Secure" }, { "value": "support", "label": "Support" },
+      { "value": "sun", "label": "Sun" }, { "value": "paw", "label": "Paw" }, { "value": "none", "label": "None" }
+    ], "default": "shipping" },
+    { "type": "text", "id": "badge_1", "label": "Text", "default": "Ships from the US with tracking" },
+    { "type": "header", "content": "Badge 2" },
+    { "type": "select", "id": "icon_2", "label": "Icon", "options": [
+      { "value": "shipping", "label": "Shipping" }, { "value": "returns", "label": "Returns" },
+      { "value": "secure", "label": "Secure" }, { "value": "support", "label": "Support" },
+      { "value": "sun", "label": "Sun" }, { "value": "paw", "label": "Paw" }, { "value": "none", "label": "None" }
+    ], "default": "returns" },
+    { "type": "text", "id": "badge_2", "label": "Text", "default": "30-day returns" },
+    { "type": "header", "content": "Badge 3" },
+    { "type": "select", "id": "icon_3", "label": "Icon", "options": [
+      { "value": "shipping", "label": "Shipping" }, { "value": "returns", "label": "Returns" },
+      { "value": "secure", "label": "Secure" }, { "value": "support", "label": "Support" },
+      { "value": "sun", "label": "Sun" }, { "value": "paw", "label": "Paw" }, { "value": "none", "label": "None" }
+    ], "default": "secure" },
+    { "type": "text", "id": "badge_3", "label": "Text", "default": "Secure checkout" },
+    { "type": "header", "content": "Badge 4" },
+    { "type": "select", "id": "icon_4", "label": "Icon", "options": [
+      { "value": "shipping", "label": "Shipping" }, { "value": "returns", "label": "Returns" },
+      { "value": "secure", "label": "Secure" }, { "value": "support", "label": "Support" },
+      { "value": "sun", "label": "Sun" }, { "value": "paw", "label": "Paw" }, { "value": "none", "label": "None" }
+    ], "default": "support" },
+    { "type": "text", "id": "badge_4", "label": "Text", "default": "Friendly email support" },
+    { "type": "header", "content": "Padding" },
+    { "type": "range", "id": "padding-block-start", "label": "Top", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 8 },
+    { "type": "range", "id": "padding-block-end", "label": "Bottom", "min": 0, "max": 60, "step": 2, "unit": "px", "default": 0 }
+  ],
+  "presets": [{ "name": "Trust badges", "category": "Sunny Loaf" }]
+}
+{% endschema %}

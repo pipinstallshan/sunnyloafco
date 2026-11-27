@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "about": {
+      "type": "sl-about",
+      "settings": {
+        "color_scheme": "light",
+        "eyebrow": "Our story",
+        "heading": "A sunny little home brand for cats",
+        "term": "loaf",
+        "pronunciation": "noun, cat slang",
+        "definition": "A cat sitting tucked up with its paws hidden under its chest, like it plans to stay until the sun moves. That is the whole warmth of our name.",
+        "body": "<p>Sunny Loaf Co. picks a small number of pieces for cats who follow the sun around the house: a floor-to-ceiling cactus tree for climbing, and a raised plush sofa bed for the long nap after.</p><p>We list real sizes, describe every product honestly, and send tracking with every order. If something isn't right, email hello@sunnyloafco.com and we'll make it right.</p>",
+        "button_label": "Shop cat trees & beds",
+        "button_link": "shopify://collections/all"
+      }
+    },
+    "faq": {
+      "type": "sl-faq",
+      "blocks": {
+        "f1": { "type": "qa", "settings": { "question": "How long does shipping take?", "answer": "<p>Please allow 1&ndash;3 business days to process, then typically 5&ndash;10 business days for delivery. Shipping is free in the US on orders over $49, and you'll get tracking by email when it ships.</p>", "open": false } },
+        "f2": { "type": "qa", "settings": { "question": "How can I reach you?", "answer": "<p>Email hello@sunnyloafco.com and we'll reply within one business day.</p>", "open": false } }
+      },
+      "block_order": ["f1", "f2"],
+      "settings": { "color_scheme": "accent", "eyebrow": "Good to know", "heading": "A few common questions", "subhead": "" }
+    }
+  },
+  "order": ["about", "faq"]
+}

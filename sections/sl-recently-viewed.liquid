@@ -1,0 +1,108 @@
+{%- liquid
+  assign s = section.settings
+-%}
+{%- if search.performed -%}
+  {%- comment -%} Rendered via the Section Rendering API with a search query — output just the cards. {%- endcomment -%}
+  <div class="sl-recent__grid" data-recent-grid>
+    {%- for product in search.results -%}
+      <div data-product-id="{{ product.id }}">
+        <a class="sl-mini-card" href="{{ product.url }}">
+          <div class="sl-mini-card__media">
+            {%- if product.featured_media -%}
+              {{ product.featured_media | image_url: width: 500 | image_tag: loading: 'lazy', widths: '250,400,500', sizes: '(min-width:750px) 22vw, 45vw', alt: product.title | escape }}
+            {%- else -%}
+              {{ 'product-1' | placeholder_svg_tag: '' }}
+            {%- endif -%}
+          </div>
+          <p class="sl-mini-card__title">{{ product.title }}</p>
+          <p class="sl-mini-card__price">{{ product.price | money }}</p>
+        </a>
+      </div>
+    {%- endfor -%}
+  </div>
+{%- else -%}
+  <section
+    class="sl-section sl-scheme--{{ s.color_scheme }}"
+    style="--sl-pad-top: {{ s.padding_top }}px; --sl-pad-bottom: {{ s.padding_bottom }}px;"
+    {{ section.shopify_attributes }}
+  >
+    <div class="sl-container">
+      <sl-recently-viewed
+        data-section-id="{{ section.id }}"
+        data-limit="{{ s.max_products }}"
+        {% if product %}data-current="{{ product.id }}"{% endif %}
+        hidden
+      >
+        {%- if s.heading != blank -%}
+          <div class="sl-section-head"><h2 class="sl-heading">{{ s.heading }}</h2></div>
+        {%- endif -%}
+        <div class="sl-recent__grid" data-recent-grid></div>
+      </sl-recently-viewed>
+    </div>
+  </section>
+
+  <script type="module">
+    import { RecentlyViewed } from '{{ 'recently-viewed-products.js' | asset_url }}';
+    import { sectionRenderer } from '{{ 'section-renderer.js' | asset_url }}';
+
+    class SlRecentlyViewed extends HTMLElement {
+      async connectedCallback() {
+        const current = this.dataset.current;
+        let ids = RecentlyViewed.getProducts().filter((id) => String(id) !== String(current));
+        const limit = parseInt(this.dataset.limit, 10) || 4;
+        ids = ids.slice(0, limit);
+        if (ids.length === 0) return;
+
+        const url = new URL('{{ routes.search_url }}', location.origin);
+        url.searchParams.set('q', ids.map((id) => `id:${id}`).join(' OR '));
+        url.searchParams.set('resources[type]', 'product');
+
+        try {
+          const html = await sectionRenderer.getSectionHTML(this.dataset.sectionId, false, url);
+          const doc = new DOMParser().parseFromString(html, 'text/html');
+          const grid = doc.querySelector('[data-recent-grid]');
+          const target = this.querySelector('[data-recent-grid]');
+          if (!grid || !target || grid.children.length === 0) return;
+
+          // Preserve recently-viewed order.
+          const byId = new Map();
+          for (const child of grid.children) byId.set(child.dataset.productId, child);
+          target.replaceChildren();
+          for (const id of ids) {
+            const card = byId.get(String(id));
+            if (card) target.appendChild(card);
+          }
+          if (target.children.length > 0) this.hidden = false;
+        } catch (e) {
+          /* silent: recently viewed is a progressive enhancement */
+        }
+      }
+    }
+    if (!customElements.get('sl-recently-viewed')) customElements.define('sl-recently-viewed', SlRecentlyViewed);
+  </script>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Recently viewed",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "light", "label": "Light (Warm Milk)" },
+        { "value": "accent", "label": "Accent (Wheatfield)" },
+        { "value": "dark", "label": "Dark (Charcoal)" }
+      ],
+      "default": "light"
+    },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Recently loafed on" },
+    { "type": "range", "id": "max_products", "label": "Max products", "min": 2, "max": 4, "step": 1, "default": 4 },
+    { "type": "range", "id": "padding_top", "label": "Top padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom padding", "min": 0, "max": 120, "step": 4, "unit": "px", "default": 56 }
+  ],
+  "presets": [{ "name": "Recently viewed", "category": "Sunny Loaf" }]
+}
+{% endschema %}

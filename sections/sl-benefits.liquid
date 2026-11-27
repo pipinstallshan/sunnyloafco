@@ -1,0 +1,138 @@
+{%- liquid
+  assign s = section.settings
+  assign columns = section.blocks.size
+  if columns > 4
+    assign columns = 4
+  endif
+  if columns < 1
+    assign columns = 1
+  endif
+-%}
+<section class="sl-section sl-scheme--{{ s.color_scheme }}" {{ section.shopify_attributes }}>
+  <div class="sl-container">
+    {%- if s.eyebrow != blank or s.heading != blank or s.subhead != blank -%}
+      <div class="sl-section-head{% if s.center_heading %} sl-section-head--center{% endif %}">
+        {%- if s.eyebrow != blank -%}<p class="sl-eyebrow">{{ s.eyebrow }}</p>{%- endif -%}
+        {%- if s.heading != blank -%}<h2 class="sl-heading">{{ s.heading }}</h2>{%- endif -%}
+        {%- if s.subhead != blank -%}<p class="sl-subheading">{{ s.subhead }}</p>{%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="sl-benefits__grid" style="--sl-columns: {{ columns }};">
+      {%- for block in section.blocks -%}
+        <div class="sl-benefit sl-card sl-card--shadow" {{ block.shopify_attributes }}>
+          {%- if block.settings.icon != 'none' -%}
+            {% render 'sl-icon', name: block.settings.icon %}
+          {%- endif -%}
+          {%- if block.settings.title != blank -%}
+            <h3 class="sl-benefit__title">{{ block.settings.title }}</h3>
+          {%- endif -%}
+          {%- if block.settings.text != blank -%}
+            <p class="sl-benefit__text">{{ block.settings.text }}</p>
+          {%- endif -%}
+        </div>
+      {%- else -%}
+        <div class="sl-editor-note">Add benefit tiles in the theme editor.</div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Why cats love it",
+  "tag": "section",
+  "disabled_on": { "groups": ["header", "footer"] },
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "light", "label": "Light (Warm Milk)" },
+        { "value": "accent", "label": "Accent (Wheatfield)" },
+        { "value": "dark", "label": "Dark (Charcoal)" }
+      ],
+      "default": "light"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Why cats love it" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Built around the way cats actually live" },
+    {
+      "type": "textarea",
+      "id": "subhead",
+      "label": "Supporting text",
+      "default": "Sunny windows, soft landings, and a spot that is unmistakably theirs."
+    },
+    { "type": "checkbox", "id": "center_heading", "label": "Center the heading", "default": true }
+  ],
+  "blocks": [
+    {
+      "type": "benefit",
+      "name": "Benefit tile",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "sun", "label": "Sun" },
+            { "value": "cat", "label": "Cat" },
+            { "value": "window", "label": "Window" },
+            { "value": "paw", "label": "Paw" },
+            { "value": "none", "label": "None" }
+          ],
+          "default": "sun"
+        },
+        { "type": "text", "id": "title", "label": "Title", "default": "Follows the sun" },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Text",
+          "default": "Sized for real windowsills, so the warmest patch of the day is always within reach."
+        }
+      ]
+    }
+  ],
+  "max_blocks": 4,
+  "presets": [
+    {
+      "name": "Why cats love it",
+      "category": "Sunny Loaf",
+      "blocks": [
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "sun",
+            "title": "Follows the sun",
+            "text": "Sized for real windowsills, so the warmest patch of the day is always within reach."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "window",
+            "title": "A front-row seat",
+            "text": "Perches that sit steady on the glass for hours of bird TV and people-watching."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "paw",
+            "title": "Made for loafing",
+            "text": "Soft, tuck-in surfaces that invite paws-under, chin-down, zero-plans napping."
+          }
+        },
+        {
+          "type": "benefit",
+          "settings": {
+            "icon": "cat",
+            "title": "Looks right at home",
+            "text": "Calm, warm tones chosen to suit your room, not to shout from across it."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
